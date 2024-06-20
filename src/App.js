@@ -7,6 +7,9 @@ import ExperienceForm from './components/ExperienceForm';
 import ShowGeneralInfo from './components/ShowGeneralInfo';
 import ShowEducationInfo from './components/ShowEducationInfo';
 import ShowExperienceInfo from './components/ShowExperienceInfo';
+import GeneralInfoCV from './components/GeneralInfoCV';
+import EducationInfoCV from './components/EducationInfoCV';
+import ExperienceInfoCV from './components/ExperienceInfoCV';
 
 const App = () => {
   // define states:
@@ -105,6 +108,7 @@ const App = () => {
           <EducationForm EducationInfo={EducationInfo[EducationId]} isEditing={EducationEdit} saveForm={saveForm} />
 
           {EducationInfo.length > 0 && (
+            // console.log(EducationInfo),
             <div className="education-form-show">
               <div className="education-info">
                 <ShowEducationInfo EducationInfo={EducationInfo} editForm={editEducationForm} />
@@ -125,7 +129,18 @@ const App = () => {
           )}
         </div>
 
-      <div className="resume">
+      <div className="resume-display">
+          {GeneralInfo != '' && (
+              <GeneralInfoCV props={GeneralInfo} />
+          )}
+
+          {EducationInfo.length > 0 && (
+              <EducationInfoCV EducationInfo={EducationInfo} />
+          )}
+
+          {ExperienceInfo.length > 0 && (
+              <ExperienceInfoCV ExperienceInfo={ExperienceInfo} />
+          )}
       </div>
     </div>
   </div>

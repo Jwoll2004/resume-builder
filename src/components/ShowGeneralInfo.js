@@ -1,14 +1,14 @@
 import React from "react";
 
-const ShowInfo = ({props}) => {
+const ShowGeneralInfo = ({props}) => {
     return (
         <>
             {Object.entries(props).map(([key, value]) => {
                 if(value !== props.type){
                     return (
-                        <div key={key} className="show-info">
-                            <strong>{key}:</strong> {value}
-                        </div>
+                        <p key={key} className={key}>
+                            {value}
+                        </p>
                     );
                 }
             })}
@@ -16,4 +16,4 @@ const ShowInfo = ({props}) => {
     );
 };
 
-export default ShowInfo;
+export default ShowGeneralInfo;

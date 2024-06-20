@@ -6,7 +6,7 @@ const ShowInfo = (props) => {
     const entry = eduArray.map((item) => {
         return (
             <div key={uniqid()} className="show-info">
-                <ShowItem key={uniqid()} school={item.school} degree={item.degree} graduationDate={item.graduationDate} />
+                <ShowItem key={uniqid()} school={item.school} degree={item.degree} startDate={item.startDate} endDate={item.endDate}/>
                 <button 
                     key={uniqid()}
                     onClick={() => props.editForm(eduArray.indexOf(item))}
@@ -25,7 +25,8 @@ const ShowItem = (props) => {
         <div>
             <h3>School: {props.school}</h3>
             <p>Degree: {props.degree}</p>
-            <p>Graduation Date: {props.graduationDate}</p>
+            <p>Start Date: {props.startDate}</p>
+            <p>End Date: {props.endDate}</p>
         </div>
     );
 }

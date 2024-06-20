@@ -23,8 +23,8 @@ const ShowInfo = (props) => {
 const ShowItem = (props) => {
     return (
         <div>
-            <h3>Company: {props.company}</h3>
             <p>Position: {props.position}</p>
+            <h3>Company: {props.company}</h3>
             <p>Start Date: {props.startDate}</p>
             <p>End Date: {props.endDate}</p>
         </div>

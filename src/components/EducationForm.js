@@ -8,12 +8,13 @@ import { FormButtons } from './FormButtons';
 const EducationForm = (props) => {
     const [school, setSchool] = useState('');
     const [degree, setDegree] = useState('');
-    const [graduationDate, setGraduationDate] = useState('');
+    const [startDate, setstartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
     const [type, setType] = useState('education');
 
 
     const isValidForm = () => {
-        return school.length > 0 && degree.length > 0 && graduationDate.length > 0;
+        return school.length > 0 && degree.length > 0 && startDate.length > 0 && endDate.length > 0;
     }
 
     const OnSubmit = (e) => {
@@ -22,13 +23,16 @@ const EducationForm = (props) => {
         const EducationInfo = {
             school: school,
             degree: degree,
-            graduationDate: graduationDate,
+            startDate: startDate,
+            endDate: endDate,
             type: type
         };
         props.saveForm(EducationInfo);
         setSchool('');
         setDegree('');
-        setGraduationDate('');
+        setstartDate('');
+        setEndDate('');
+
     }
 
 
@@ -45,7 +49,9 @@ const EducationForm = (props) => {
 
                 <InputBox labelFor="degree" label="Degree" type="text" id="degree" name="degree" value={degree} onChange={(e) => setDegree(e.target.value)} />
 
-                <InputBox labelFor="graduationDate" label="Graduation Date" type="date" id="graduationDate" name="graduationDate" value={graduationDate} onChange={(e) => setGraduationDate(e.target.value)} />
+                <InputBox labelFor="startDate" label="Start Date" type="date" id="startDate" name="startDate" value={startDate} onChange={(e) => setstartDate(e.target.value)} />
+
+                <InputBox labelFor="endDate" label="End Date" type="date" id="endDate" name="endDate" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
 
                 <FormButtons isValidForm={isValidForm} onSubmit={OnSubmit}/>
             </form>
