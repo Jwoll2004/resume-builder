@@ -5,15 +5,13 @@ const ExperienceInfoCV = (props) => {
     const propsArray = [...props.ExperienceInfo];
     const entry = propsArray.map((item) => {
         return (
-            <div key={uniqid()} className="show-info">
-                <ShowItem key={uniqid()} company={item.company} position={item.position} startDate={item.startDate} endDate={item.endDate} responsibilities={item.responsibilities}/>
-            </div>
+            <ShowItem key={uniqid()} company={item.company} position={item.position} startDate={item.startDate} endDate={item.endDate} responsibilities={item.responsibilities}/>
         );
     });
     return (
-        <div className="experience-cv">
+        <>
             {entry}
-        </div>
+        </>
     )
 }
 

@@ -5,15 +5,13 @@ const EducationInfoCV = (props) => {
     const propsArray = [...props.EducationInfo];
     const entry = propsArray.map((item) => {
         return (
-            <div key={uniqid()} className="show-info">
-                <ShowItem key={uniqid()} school={item.school} degree={item.degree} startDate={item.startDate} endDate={item.endDate}/>
-            </div>
+            <ShowItem key={uniqid()} school={item.school} degree={item.degree} startDate={item.startDate} endDate={item.endDate}/>
         );
     });
     return (
-        <div className="education-cv">
+        <>
             {entry}
-        </div>
+        </>
     )
 }
 
