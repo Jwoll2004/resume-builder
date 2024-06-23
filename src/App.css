@@ -124,11 +124,16 @@ button {
     padding: 0.5rem;
 }
 
+.project-description-instruction {
+    font-size: 0.8rem; 
+}
+
 /* resume display styling */
 
 .resume-container {
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 10px;  /* Add some padding to prevent the content from touching the edges */
 }
 
@@ -191,7 +196,7 @@ button {
     font-weight: bold;
     width: 100%;
     border-bottom: 2px solid #000000;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
 }
 
 .entry {
@@ -243,7 +248,38 @@ button {
     content: ', ';
 }
 
+/* projects */
+.cv-project {
+    display: grid;
+    grid-template-columns: max-content 1fr 1fr;
+    font-size: 0.6vw;
+    align-items: center;
+}
+.projectName {
+    font-weight: bold;
+    font-size: 0.8vw;
+    padding-right: 5px;
+}
 
+.techStack {
+    font-style: italic;
+    font-size: 0.6vw;
+}
+.project-links{
+    display: flex;
+    gap: 0.3rem;
+    justify-self: flex-end;
+    font-size: 0.6vw;
+    align-items: center;
+}
+
+.project-description {
+    font-size: 0.6vw;
+    padding-left: 1rem;
+}
+
+
+/* prof experience */
 .cv-position-company {
     display: flex;
     align-items: center;

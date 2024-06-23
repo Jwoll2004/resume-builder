@@ -24,47 +24,6 @@ const EducationInfoCV = (props) => {
 const ShowItem = (props) => {
   return (
     <div className="entry">
-      {/* <div className="cv-degree-school">
-        {Object.entries(props).map(([key, value]) => {
-          if (key !== "type") {
-            if (key === "degree" || key === "school") {
-              return (
-                <p key={key} className={key}>
-                  {value}
-                </p>
-              );
-            }
-          }
-        })}
-      </div>
-      <div className="cv-dates">
-        {Object.entries(props).map(([key, value]) => {
-          if (key !== "type") {
-            if (key === "startDate" || key === "endDate") {
-              return (
-                <p key={key} className={key}>
-                  {value}
-                </p>
-              );
-            }
-          }
-        })}
-      </div>
-
-      <div className="cv-grade">
-        {Object.entries(props).map(([key, value]) => {
-          if (key !== "type") {
-            if (key === "grade") {
-              return (
-                <p key={key} className={key}>
-                  {value[1]} - {value[0]}
-                </p>
-              );
-            }
-          }
-        })}
-      </div> */}
-
       <div className="cv-school-dates">
         {Object.entries(props).map(([key, value]) => {
           if (key !== "type") {

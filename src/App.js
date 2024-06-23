@@ -10,6 +10,10 @@ import ShowExperienceInfo from "./components/ShowExperienceInfo";
 import GeneralInfoCV from "./components/GeneralInfoCV";
 import EducationInfoCV from "./components/EducationInfoCV";
 import ExperienceInfoCV from "./components/ExperienceInfoCV";
+import ProjectForm from "./components/ProjectForm";
+import ShowProjectInfo from "./components/ShowProjectInfo";
+import ProjectInfoCV from "./components/ProjectInfoCV";
+
 
 const App = () => {
   // define states:
@@ -19,6 +23,10 @@ const App = () => {
   const [EducationInfo, setEducationInfo] = useState([]);
   const [EducationEdit, setEducationEdit] = useState(false);
   const [EducationId, setEducationId] = useState(0);
+
+  const [ProjectInfo, setProjectInfo] = useState([]);
+  const [projectEdit, setProjectEdit] = useState(false);
+  const [projectId, setProjectId] = useState(0);
 
   const [ExperienceInfo, setExperienceInfo] = useState([]);
   const [experienceEdit, setExperienceEdit] = useState(false);
@@ -33,13 +41,17 @@ const App = () => {
     setEducationId(id);
   };
 
+  const editProjectForm = (id) => {
+    setProjectEdit(!projectEdit);
+    setProjectId(id);
+  }
+
   const editExperienceForm = (id) => {
     setExperienceEdit(!experienceEdit);
     setExperienceId(id);
   };
 
   const saveForm = (obj) => {
-    console.log("saving form ");
     if (obj.type === "general") {
       setGeneralInfo(obj);
       setGeneralEdit(false);
@@ -62,7 +74,26 @@ const App = () => {
         setEducationEdit(false);
         setEducationId(null);
       }
-    } 
+    }
+    
+    else if (obj.type === "project") {
+      if (projectEdit) {
+        const newProject = ProjectInfo.map((element, index) => {
+          if (index === projectId) {
+            return obj;
+          }
+          return element;
+        });
+        setProjectInfo(newProject);
+        setProjectEdit(false);
+        setProjectId(null);
+      }
+      else {
+        setProjectInfo([...ProjectInfo, obj]);
+        setProjectEdit(false);
+        setProjectId(null);
+      }
+    }
     
     else if (obj.type === "experience") {
       if (experienceEdit) {
@@ -128,6 +159,25 @@ const App = () => {
             )}
           </div>
 
+          <div className="project-form">
+            <ProjectForm
+              ProjectInfo={ProjectInfo[projectId]}
+              isEditing={projectEdit}
+              saveForm={saveForm}
+            />
+
+            {ProjectInfo.length > 0 && (
+              <div className="project-form-show form-show">
+                <div className="project-info">
+                  <ShowProjectInfo
+                    ProjectInfo={ProjectInfo}
+                    editForm={editProjectForm}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+
           <div className="experience-form">
             <ExperienceForm
               ExperienceInfo={ExperienceInfo[experienceId]}
@@ -157,6 +207,13 @@ const App = () => {
           <div className="education-cv">
             {EducationInfo.length > 0 && <p className="cv-title">Education</p>}
             <EducationInfoCV EducationInfo={EducationInfo} />
+          </div>
+
+          <div className="project-cv">
+            {ProjectInfo.length > 0 && (
+              <p className="cv-title">Projects</p>
+            )}
+            <ProjectInfoCV ProjectInfo={ProjectInfo} />
           </div>
 
           <div className="experience-cv">
