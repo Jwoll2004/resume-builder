@@ -24,7 +24,22 @@ const App = () => {
   const [experienceEdit, setExperienceEdit] = useState(false);
   const [experienceId, setExperienceId] = useState(0);
 
+  const editGeneralForm = () => {
+    setGeneralEdit(!GeneralEdit);
+  };
+
+  const editEducationForm = (id) => {
+    setEducationEdit(!EducationEdit);
+    setEducationId(id);
+  };
+
+  const editExperienceForm = (id) => {
+    setExperienceEdit(!experienceEdit);
+    setExperienceId(id);
+  };
+  
   const saveForm = (obj) => {
+    console.log("saving form ");
     if (obj.type === "general") {
       setGeneralInfo(obj);
       setGeneralEdit(false);
@@ -59,20 +74,6 @@ const App = () => {
     }
   };
 
-  const editGeneralForm = () => {
-    setGeneralEdit(!GeneralEdit);
-  };
-
-  const editEducationForm = (id) => {
-    setEducationEdit(!EducationEdit);
-    setEducationId(id);
-  };
-
-  const editExperienceForm = (id) => {
-    setExperienceEdit(!experienceEdit);
-    setExperienceId(id);
-  };
-
   return (
     <div className="container">
       <div className="form-container">
@@ -86,13 +87,10 @@ const App = () => {
 
             {GeneralInfo != "" && (
               <div className="general-form-show">
-                <div className="general-info">
-                  <ShowGeneralInfo props={GeneralInfo} />
-                </div>
-
-                <button onClick={() => setGeneralEdit(!GeneralEdit)}>
-                  Edit
-                </button>
+                <ShowGeneralInfo 
+                  props={GeneralInfo}
+                  editForm={editGeneralForm} 
+                />
               </div>
             )}
           </div>
@@ -105,14 +103,11 @@ const App = () => {
             />
 
             {EducationInfo.length > 0 && (
-              // console.log(EducationInfo),
               <div className="education-form-show">
-                <div className="education-info">
-                  <ShowEducationInfo
-                    EducationInfo={EducationInfo}
-                    editForm={editEducationForm}
-                  />
-                </div>
+                <ShowEducationInfo
+                  EducationInfo={EducationInfo}
+                  editForm={editEducationForm}
+                />
               </div>
             )}
           </div>
@@ -144,9 +139,7 @@ const App = () => {
           </div>
 
           <div className="education-cv">
-            {EducationInfo.length > 0 && (
-              <p className="cv-title">Education</p>
-            )}
+            {EducationInfo.length > 0 && <p className="cv-title">Education</p>}
             <EducationInfoCV EducationInfo={EducationInfo} />
           </div>
 

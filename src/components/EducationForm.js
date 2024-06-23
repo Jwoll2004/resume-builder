@@ -9,18 +9,27 @@ const EducationForm = (props) => {
   const [degree, setDegree] = useState("");
   const [startDate, setstartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [grade, setGrade] = useState(["", "CGPA"]);
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+
   const [type, setType] = useState("education");
 
+
   const isValidForm = () => {
+    console.log("validating");
     return (
       school.length > 0 &&
       degree.length > 0 &&
       startDate.length > 0 &&
-      endDate.length > 0
+      endDate.length > 0 &&
+      city.length > 0 &&
+      country.length > 0
     );
   };
 
   const OnSubmit = (e) => {
+    console.log("submit");
     e.preventDefault();
 
     const EducationInfo = {
@@ -32,12 +41,49 @@ const EducationForm = (props) => {
       ),
       endDate: format(new Date(endDate.replaceAll("-", "/")), "MMM',' yyyy"),
       type: type,
+      grade: grade,
+      city: city,
+      country: country,
     };
     props.saveForm(EducationInfo);
     setSchool("");
     setDegree("");
     setstartDate("");
     setEndDate("");
+    setGrade(["", "CGPA"]);
+    setCity("");
+    setCountry("");
+  };
+
+  const validateGrade = (value, gradeType) => {
+    let validatedValue = parseFloat(value);
+    if (gradeType === "CGPA") {
+      if (validatedValue > 10) validatedValue = 10;
+      if (validatedValue < 0) validatedValue = 0;
+      if (value.split(".")[1] && value.split(".")[1].length > 2) {
+        validatedValue = validatedValue.toFixed(2);   
+      }
+    } 
+    
+    else if (gradeType === "Percentage") {
+      if (validatedValue > 100) validatedValue = 100;
+      if (validatedValue < 0) validatedValue = 0;
+      if (value.split(".")[1] && value.split(".")[1].length > 1) {
+        validatedValue = validatedValue.toFixed(1);
+      }
+    }
+    return validatedValue.toString();
+  };
+
+  const onGradeChange = (e) => {
+    const newGradeValue = validateGrade(e.target.value, grade[1]);
+    setGrade([newGradeValue, grade[1]]);
+  };
+
+  const onGradeTypeChange = (e) => {
+    const newGradeType = e.target.value;
+    const newGradeValue = validateGrade(grade[0], newGradeType);
+    setGrade([newGradeValue, newGradeType]);
   };
 
   return (
@@ -89,7 +135,52 @@ const EducationForm = (props) => {
           onChange={(e) => setEndDate(e.target.value)}
         />
 
-        <FormButtons isValidForm={isValidForm} onSubmit={OnSubmit} />
+        <div className="grade-input">
+          <label htmlFor="grade">Grade</label>
+          <div className="grade-type-input">
+            <input
+              type="number"
+              id="grade"
+              name="grade"
+              value={grade[0]}
+              onChange={onGradeChange}
+              min={grade[1] === "CGPA" ? 0 : 0}
+              max={grade[1] === "CGPA" ? 10 : 100}
+              step={grade[1] === "CGPA" ? 0.01 : 0.1}
+            />
+            <select
+              name="gradeType"
+              id="gradeType"
+              value={grade[1]}
+              onChange={onGradeTypeChange}
+            >
+              <option value="CGPA">CGPA</option>
+              <option value="Percentage">Percentage</option>
+            </select>
+          </div>
+        </div>
+
+        <InputBox
+          labelFor="city"
+          label="City"
+          type="text"
+          id="city"
+          name="city"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+        />
+
+        <InputBox
+          labelFor="country"
+          label="Country"
+          type="text"
+          id="country"
+          name="country"
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+        />
+
+        <FormButtons isValidForm={isValidForm()}/>
       </form>
     </div>
   );

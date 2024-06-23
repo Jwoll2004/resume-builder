@@ -8,10 +8,12 @@ const GeneralInfoForm = (props) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
+    const [github, setGithub] = useState('');
+    const [linkedIn, setLinkedIn] = useState('');
     const [type, setType] = useState('general');
     
     const isValidForm = () => {
-        return name.length > 0 && email.length > 0 && phone.length > 0;
+        return name.length > 0 && email.length > 0 && phone.length > 0 && github.length > 0;
     }
     
     const OnSubmit = (e) => {
@@ -21,12 +23,16 @@ const GeneralInfoForm = (props) => {
             name: name,
             email: email,
             phone: phone,
+            github: github,
+            linkedIn: linkedIn,
             type: type
         };
         props.saveForm(generalInfo);
         setName('');
         setEmail('');
         setPhone('');
+        setGithub('');
+        setLinkedIn('');
 ;    }
 
     return (
@@ -44,7 +50,11 @@ const GeneralInfoForm = (props) => {
 
                 <InputBox labelFor="phone" label="Phone" type="tel" id="phone" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)}/>
 
-                <FormButtons isValidForm={isValidForm()} onSubmit={OnSubmit}/>
+                <InputBox labelFor="github" label="Github" type="url" id="github" name="github" value={github} onChange={(e) => setGithub(e.target.value)}/>
+                
+                <InputBox labelFor="linkedIn" label="LinkedIn" type="url" id="linkedIn" name="linkedIn" value={linkedIn} onChange={(e) => setLinkedIn(e.target.value)}/>
+                
+                <FormButtons isValidForm={isValidForm()} />
             </form>
         </div>
     );

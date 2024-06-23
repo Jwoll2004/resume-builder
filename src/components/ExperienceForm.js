@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { InputBox } from './InputBox';
 import { FormButtons } from './FormButtons';
+import { format } from "date-fns";
 
 const ExperienceForm = (props) => {
     const [company, setCompany] = useState('');
@@ -21,8 +22,11 @@ const ExperienceForm = (props) => {
         const ExperienceInfo = {
             position: position,
             company: company,
-            startDate: startDate,
-            endDate: endDate,
+            startDate: format(
+                new Date(startDate.replaceAll("-", "/")),
+                "MMM',' yyyy"
+              ),
+              endDate: format(new Date(endDate.replaceAll("-", "/")), "MMM',' yyyy"),
             responsibilities: responsibilities,
             type: type
         };
@@ -54,7 +58,7 @@ const ExperienceForm = (props) => {
                 
                 <InputBox labelFor="responsibilities" label="Responsibilities" type="text" id="responsibilities" name="responsibilities" value={responsibilities} onChange={(e) => setResponsibilities(e.target.value)} />
 
-                <FormButtons isValidForm={isValidForm} />
+                <FormButtons isValidForm={isValidForm()} />
             </form>
         </div>
     )
