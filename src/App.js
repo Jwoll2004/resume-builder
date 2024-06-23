@@ -37,39 +37,52 @@ const App = () => {
     setExperienceEdit(!experienceEdit);
     setExperienceId(id);
   };
-  
+
   const saveForm = (obj) => {
     console.log("saving form ");
     if (obj.type === "general") {
       setGeneralInfo(obj);
       setGeneralEdit(false);
-    } else if (obj.type === "education") {
+    } 
+    
+    else if (obj.type === "education") {
       if (EducationEdit) {
-        const newEducation = EducationInfo.map((item) => {
-          if (item.id === obj.id) {
+        const newEducation = EducationInfo.map((element, index) => {
+          if (index === EducationId) {
             return obj;
           }
-          return item;
+          return element;
         });
         setEducationInfo(newEducation);
         setEducationEdit(false);
-      } else {
+        setEducationId(null);
+      } 
+      else {
         setEducationInfo([...EducationInfo, obj]);
+        setEducationEdit(false);
+        setEducationId(null);
       }
-    } else if (obj.type === "experience") {
+    } 
+    
+    else if (obj.type === "experience") {
       if (experienceEdit) {
-        const newExperience = ExperienceInfo.map((item) => {
-          if (item.id === obj.id) {
+        const newExperience = ExperienceInfo.map((element, index) => {
+          if (index === experienceId) {
             return obj;
           }
-          return item;
+          return element;
         });
         setExperienceInfo(newExperience);
         setExperienceEdit(false);
-      } else {
+        setExperienceId(null);
+      } 
+      else {
         setExperienceInfo([...ExperienceInfo, obj]);
+        setExperienceEdit(false);
+        setExperienceId(null);
       }
-    } else {
+    } 
+    else {
       console.log("Invalid type");
     }
   };
@@ -86,11 +99,14 @@ const App = () => {
             />
 
             {GeneralInfo != "" && (
-              <div className="general-form-show">
+              <div className="general-form-show form-show">
                 <ShowGeneralInfo 
                   props={GeneralInfo}
-                  editForm={editGeneralForm} 
                 />
+
+                <button onClick={editGeneralForm} className="edit-form">
+                  Edit
+                </button>
               </div>
             )}
           </div>
@@ -103,7 +119,7 @@ const App = () => {
             />
 
             {EducationInfo.length > 0 && (
-              <div className="education-form-show">
+              <div className="education-form-show form-show">
                 <ShowEducationInfo
                   EducationInfo={EducationInfo}
                   editForm={editEducationForm}
@@ -120,7 +136,7 @@ const App = () => {
             />
 
             {ExperienceInfo.length > 0 && (
-              <div className="experience-form-show">
+              <div className="experience-form-show form-show">
                 <div className="experience-info">
                   <ShowExperienceInfo
                     ExperienceInfo={ExperienceInfo}

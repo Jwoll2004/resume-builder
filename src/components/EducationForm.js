@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { InputBox } from "./InputBox";
 import { FormButtons } from "./FormButtons";
 import { format } from "date-fns";
@@ -7,7 +6,7 @@ import { format } from "date-fns";
 const EducationForm = (props) => {
   const [school, setSchool] = useState("");
   const [degree, setDegree] = useState("");
-  const [startDate, setstartDate] = useState("");
+  const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [grade, setGrade] = useState(["", "CGPA"]);
   const [city, setCity] = useState("");
@@ -15,6 +14,17 @@ const EducationForm = (props) => {
 
   const [type, setType] = useState("education");
 
+  useEffect(() => {
+    if (props.isEditing) {
+      setSchool(props.EducationInfo.school);
+      setDegree(props.EducationInfo.degree);
+      setStartDate(format(new Date(props.EducationInfo.startDate), 'yyyy-MM-dd'));
+      setEndDate(format(new Date(props.EducationInfo.endDate), 'yyyy-MM-dd'));
+      setGrade([props.EducationInfo.grade[0], props.EducationInfo.grade[1]]);
+      setCity(props.EducationInfo.city);
+      setCountry(props.EducationInfo.country);
+    }
+  }, [props.isEditing, props.EducationInfo]);
 
   const isValidForm = () => {
     console.log("validating");
@@ -48,7 +58,7 @@ const EducationForm = (props) => {
     props.saveForm(EducationInfo);
     setSchool("");
     setDegree("");
-    setstartDate("");
+    setStartDate("");
     setEndDate("");
     setGrade(["", "CGPA"]);
     setCity("");
@@ -61,11 +71,9 @@ const EducationForm = (props) => {
       if (validatedValue > 10) validatedValue = 10;
       if (validatedValue < 0) validatedValue = 0;
       if (value.split(".")[1] && value.split(".")[1].length > 2) {
-        validatedValue = validatedValue.toFixed(2);   
+        validatedValue = validatedValue.toFixed(2);
       }
-    } 
-    
-    else if (gradeType === "Percentage") {
+    } else if (gradeType === "Percentage") {
       if (validatedValue > 100) validatedValue = 100;
       if (validatedValue < 0) validatedValue = 0;
       if (value.split(".")[1] && value.split(".")[1].length > 1) {
@@ -122,7 +130,7 @@ const EducationForm = (props) => {
           id="startDate"
           name="startDate"
           value={startDate}
-          onChange={(e) => setstartDate(e.target.value)}
+          onChange={(e) => setStartDate(e.target.value)}
         />
 
         <InputBox
@@ -180,7 +188,7 @@ const EducationForm = (props) => {
           onChange={(e) => setCountry(e.target.value)}
         />
 
-        <FormButtons isValidForm={isValidForm()}/>
+        <FormButtons isValidForm={isValidForm()} />
       </form>
     </div>
   );

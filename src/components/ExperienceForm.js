@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { InputBox } from './InputBox';
 import { FormButtons } from './FormButtons';
 import { format } from "date-fns";
@@ -12,6 +11,16 @@ const ExperienceForm = (props) => {
     const [endDate, setEndDate] = useState('');
     const [type, setType] = useState('experience');
 
+    useEffect(() => {
+        if (props.isEditing) {
+            setCompany(props.ExperienceInfo.company);
+            setPosition(props.ExperienceInfo.position);
+            setStartDate(format(new Date(props.ExperienceInfo.startDate), 'yyyy-MM-dd'));
+            setEndDate(format(new Date(props.ExperienceInfo.endDate), 'yyyy-MM-dd'));
+            setResponsibilities(props.ExperienceInfo.responsibilities);
+        }
+    }, [props.isEditing, props.ExperienceInfo]);
+    
     const isValidForm = () => {
         return company.length > 0 && position.length > 0 && responsibilities.length > 0 && startDate.length > 0 && endDate.length > 0;
     }

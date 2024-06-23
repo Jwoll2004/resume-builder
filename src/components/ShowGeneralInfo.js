@@ -8,7 +8,6 @@ const ShowGeneralInfo = ({props}) => {
             <p>{props.phone}</p>
             <p>{props.github}</p>
             <p>{props.linkedIn}</p>
-            <button onClick={() => props.editForm()} className="edit-form">Edit</button>
         </div>
     );
 };
