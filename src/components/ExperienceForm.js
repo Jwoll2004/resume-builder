@@ -13,13 +13,13 @@ const ExperienceForm = (props) => {
 
     useEffect(() => {
         if (props.isEditing) {
-            setCompany(props.ExperienceInfo.company);
-            setPosition(props.ExperienceInfo.position);
-            setStartDate(format(new Date(props.ExperienceInfo.startDate), 'yyyy-MM-dd'));
-            setEndDate(format(new Date(props.ExperienceInfo.endDate), 'yyyy-MM-dd'));
-            setResponsibilities(props.ExperienceInfo.responsibilities);
+            setCompany(props.experienceInfo.company);
+            setPosition(props.experienceInfo.position);
+            setStartDate(format(new Date(props.experienceInfo.startDate), 'yyyy-MM-dd'));
+            setEndDate(format(new Date(props.experienceInfo.endDate), 'yyyy-MM-dd'));
+            setResponsibilities(props.experienceInfo.responsibilities);
         }
-    }, [props.isEditing, props.ExperienceInfo]);
+    }, [props.isEditing, props.experienceInfo]);
     
     const isValidForm = () => {
         return company.length > 0 && position.length > 0 && responsibilities.length > 0 && startDate.length > 0 && endDate.length > 0;
@@ -28,7 +28,7 @@ const ExperienceForm = (props) => {
     const onSubmit = (e) => {
         e.preventDefault();
         
-        const ExperienceInfo = {
+        const experienceInfo = {
             position: position,
             company: company,
             startDate: format(
@@ -39,7 +39,7 @@ const ExperienceForm = (props) => {
             responsibilities: responsibilities,
             type: type
         };
-        props.saveForm(ExperienceInfo);
+        props.saveForm(experienceInfo);
         setCompany('');
         setPosition('');
         setStartDate('');

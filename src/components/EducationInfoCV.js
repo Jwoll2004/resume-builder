@@ -2,7 +2,7 @@ import React from "react";
 import uniqid from "uniqid";
 
 const EducationInfoCV = (props) => {
-  const propsArray = [...props.EducationInfo];
+  const propsArray = [...props.educationInfo];
   const entry = propsArray.map((item) => {
     return (
       <ShowItem

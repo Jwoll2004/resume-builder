@@ -16,18 +16,17 @@ const EducationForm = (props) => {
 
   useEffect(() => {
     if (props.isEditing) {
-      setSchool(props.EducationInfo.school);
-      setDegree(props.EducationInfo.degree);
-      setStartDate(format(new Date(props.EducationInfo.startDate), 'yyyy-MM-dd'));
-      setEndDate(format(new Date(props.EducationInfo.endDate), 'yyyy-MM-dd'));
-      setGrade([props.EducationInfo.grade[0], props.EducationInfo.grade[1]]);
-      setCity(props.EducationInfo.city);
-      setCountry(props.EducationInfo.country);
+      setSchool(props.educationInfo.school);
+      setDegree(props.educationInfo.degree);
+      setStartDate(format(new Date(props.educationInfo.startDate), 'yyyy-MM-dd'));
+      setEndDate(format(new Date(props.educationInfo.endDate), 'yyyy-MM-dd'));
+      setGrade([props.educationInfo.grade[0], props.educationInfo.grade[1]]);
+      setCity(props.educationInfo.city);
+      setCountry(props.educationInfo.country);
     }
-  }, [props.isEditing, props.EducationInfo]);
+  }, [props.isEditing, props.educationInfo]);
 
   const isValidForm = () => {
-    console.log("validating");
     return (
       school.length > 0 &&
       degree.length > 0 &&
@@ -42,7 +41,7 @@ const EducationForm = (props) => {
     console.log("submit");
     e.preventDefault();
 
-    const EducationInfo = {
+    const educationInfo = {
       school: school,
       degree: degree,
       startDate: format(
@@ -55,7 +54,7 @@ const EducationForm = (props) => {
       city: city,
       country: country,
     };
-    props.saveForm(EducationInfo);
+    props.saveForm(educationInfo);
     setSchool("");
     setDegree("");
     setStartDate("");

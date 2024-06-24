@@ -2,7 +2,7 @@ import React from "react";
 import uniqid from "uniqid";
 
 const ShowInfo = (props) => {
-    const expArray = [...props.ExperienceInfo];
+    const expArray = [...props.experienceInfo];
     const entry = expArray.map((item) => {
         return (
             <div key={uniqid()} className="show-info">

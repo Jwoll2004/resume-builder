@@ -2,7 +2,7 @@ import React from "react";
 import uniqid from "uniqid";
 
 const ShowInfo = (props) => {
-    const eduArray = [...props.EducationInfo];
+    const eduArray = [...props.educationInfo];
     const entry = eduArray.map((item) => {
         return (
             <div key={uniqid()} className="show-info">
@@ -23,7 +23,7 @@ const ShowInfo = (props) => {
 const ShowItem = (props) => {
     return (
         <div>
-            <h3>{props.school}</h3>
+            <h4>{props.school}</h4>
             <p>{props.degree}</p>
             <p>{props.startDate} - {props.endDate}</p>
             <p>{props.city}</p>

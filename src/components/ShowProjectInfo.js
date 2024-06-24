@@ -2,7 +2,7 @@ import React from "react";
 import uniqid from "uniqid";
 
 const ShowInfo = (props) => {
-	const projectArray = [...props.ProjectInfo];
+	const projectArray = [...props.projectInfo];
 	const entry = projectArray.map((item) => {
 		return (
 			<div key={uniqid()} className="show-info">
@@ -23,11 +23,17 @@ const ShowInfo = (props) => {
 const ShowItem = (props) => {
 	return (
 		<div>
-			<h3>{props.projectName}</h3>
+			<h4>{props.projectName}</h4>
 			<p>{props.techStack}</p>
 			<p>{props.repoLink}</p>
 			<p>{props.liveLink}</p>
-			<p>{props.description}</p>
+			<ul>
+				{props.description.map((point) => {
+					return (
+						<li key={uniqid()}>{point}</li>
+					);
+				})}
+			</ul>
 		</div>
 	);
 }

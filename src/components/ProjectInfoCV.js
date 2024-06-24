@@ -2,7 +2,7 @@ import React from "react";
 import uniqid from "uniqid";
 
 const ProjectInfoCV = (props) => {
-  const propsArray = [...props.ProjectInfo];
+  const propsArray = [...props.projectInfo];
   const entry = propsArray.map((item) => {
     return (
       <ShowItem
@@ -44,14 +44,15 @@ const ShowItem = (props) => {
             Live Preview
           </a>
         </div>
-        <div className="project-description">
-          {props.description.map((item) => {
-            return <p key={uniqid()}> 
-			{/* add bullet icon before */}
-			&#8226; {item}
-			</p>;
+        <ul className="project-description">
+          {props.description.map((point) => {
+            return (
+              <li key={uniqid()} className="description">
+                {point}
+              </li>
+            );
           })}
-        </div>
+        </ul>
       </div>
     </div>
   );
