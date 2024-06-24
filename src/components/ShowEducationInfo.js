@@ -23,7 +23,7 @@ const ShowInfo = (props) => {
 const ShowItem = (props) => {
     return (
         <div>
-            <h4>{props.school}</h4>
+            <h3>{props.school}</h3>
             <p>{props.degree}</p>
             <p>{props.startDate} - {props.endDate}</p>
             <p>{props.city}</p>

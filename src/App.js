@@ -60,6 +60,48 @@ const App = () => {
     setTechnicalSkillsEdit(!technicalSkillsEdit);
   };
 
+  const deleteEntry = (obj) => {
+    if(obj.type === "education") {
+      if(educationEdit) {
+        setEducationInfo(educationInfo.filter((element, index) => {
+          if(index !== educationId) {
+            return element;
+          }
+        }
+        ));
+        setEducationEdit(false);
+        setEducationId(null);
+
+      }
+    }
+
+    if(obj.type === "project") {
+      if(projectEdit) {
+        setProjectInfo(projectInfo.filter((element, index) => {
+          if(index !== projectId) {
+            return element;
+          }
+        }
+        ));
+        setProjectEdit(false);
+        setProjectId(null);
+      }
+    }
+
+    if(obj.type === "experience") {
+      if(experienceEdit) {
+        setExperienceInfo(experienceInfo.filter((element, index) => {
+          if(index !== experienceId) {
+            return element;
+          }
+        }
+        ));
+        setExperienceEdit(false);
+        setExperienceId(null);
+      }
+    }
+  }
+
   const saveForm = (obj) => {
     if (obj.type === "general") {
       setGeneralInfo(obj);
@@ -147,6 +189,7 @@ const App = () => {
               educationInfo={educationInfo[educationId]}
               isEditing={educationEdit}
               saveForm={saveForm}
+              deleteEntry={deleteEntry}
             />
 
             {educationInfo.length > 0 && (
@@ -164,6 +207,7 @@ const App = () => {
               projectInfo={projectInfo[projectId]}
               isEditing={projectEdit}
               saveForm={saveForm}
+              deleteEntry={deleteEntry}
             />
 
             {projectInfo.length > 0 && (
@@ -183,6 +227,7 @@ const App = () => {
               experienceInfo={experienceInfo[experienceId]}
               isEditing={experienceEdit}
               saveForm={saveForm}
+              deleteEntry={deleteEntry}
             />
 
             {experienceInfo.length > 0 && (

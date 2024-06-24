@@ -106,8 +106,25 @@ const ProjectForm = (props) => {
           id="description"
           name="description"
           value={description}
-		  onChange={(e) => setDescription(e.target.value)}
+          onChange={(e) => setDescription(e.target.value)}
         />
+
+        {props.isEditing && (
+          <button
+            type="button"
+            onClick={() => {
+              setProjectName("");
+              setTechStack("");
+              setRepoLink("");
+              setLiveLink("");
+              setDescription([""]);
+              props.deleteEntry(props.projectInfo);
+            }}
+            className="delete-form"
+          >
+            Delete
+          </button>
+        )}
         <FormButtons isValidForm={isValidForm()} />
       </form>
     </div>

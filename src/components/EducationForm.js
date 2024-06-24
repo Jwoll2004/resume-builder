@@ -187,6 +187,25 @@ const EducationForm = (props) => {
           onChange={(e) => setCountry(e.target.value)}
         />
 
+        {props.isEditing && (
+          <button
+            type="button"
+            className="delete-button"
+            // clear form fields and delete entry
+            onClick={() => {
+              setSchool("");
+              setDegree("");
+              setStartDate("");
+              setEndDate("");
+              setGrade(["", "CGPA"]);
+              setCity("");
+              setCountry("");
+              props.deleteEntry(props.educationInfo);
+            }}
+          >
+            Delete
+          </button>
+        )}
         <FormButtons isValidForm={isValidForm()} />
       </form>
     </div>
