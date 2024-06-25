@@ -28,8 +28,8 @@ li::before {
 }
 
 svg, path {
-    height: 0.8vw;
-    width: 0.8vw;
+    width: 1.05rem; 
+    height: 1.05rem;
 }
 
 a{
@@ -91,7 +91,8 @@ form {
     flex-direction: column;
     gap: 0.5rem;
     padding: 0.5rem;
-    border: 1px solid #ccc;
+    border: 2px solid #000000;
+    border-radius: 10px;
 }
 
 .input-container {
@@ -141,10 +142,18 @@ button {
     font-size: 12px; 
 }
 
+.show-info {
+    border-left: 2px solid #000000;
+    padding-left: 5px;
+}
 .show-info div {
     display: flex;
     flex-direction: column;
     gap: 5px;
+}
+
+.general-form-show .edit-form, .technical-skills-form-show .edit-form{
+    margin-left: 5px;
 }
 /* resume display styling */
 

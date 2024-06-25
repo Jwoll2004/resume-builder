@@ -85,9 +85,7 @@ const App = () => {
   const [experienceEdit, setExperienceEdit] = useState(false);
   const [experienceId, setExperienceId] = useState(0);
 
-  const [technicalSkills, setTechnicalSkills] = useState(
-    initialTechnicalSkills
-  );
+  const [technicalSkills, setTechnicalSkills] = useState(initialTechnicalSkills);
   const [technicalSkillsEdit, setTechnicalSkillsEdit] = useState(false);
 
   const editGeneralForm = () => {

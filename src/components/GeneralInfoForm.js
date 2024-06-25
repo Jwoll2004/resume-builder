@@ -8,17 +8,18 @@ const GeneralInfoForm = (props) => {
   const [phone, setPhone] = useState("");
   const [github, setGithub] = useState("");
   const [linkedIn, setLinkedIn] = useState("");
+
   const [type, setType] = useState("general");
 
   useEffect(() => {
     if (props.isEditing) {
-      setName(props.GeneralInfo.name);
-      setEmail(props.GeneralInfo.email);
-      setPhone(props.GeneralInfo.phone);
-      setGithub(props.GeneralInfo.github);
-      setLinkedIn(props.GeneralInfo.linkedIn);
+      setName(props.generalInfo.name);
+      setEmail(props.generalInfo.email);
+      setPhone(props.generalInfo.phone);
+      setGithub(props.generalInfo.github);
+      setLinkedIn(props.generalInfo.linkedIn);
     }
-  }, [props.isEditing, props.GeneralInfo]);
+  }, [props.isEditing, props.generalInfo]);
 
   const isValidForm = () => {
     return (
