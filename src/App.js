@@ -15,26 +15,79 @@ import ProjectInfoCV from "./components/ProjectInfoCV";
 import TechnicalSkillsForm from "./components/TechnicalSkillsForm";
 import ShowTechnicalSkills from "./components/ShowTechnicalSkills";
 import TechnicalSkillsCV from "./components/TechnicalSkillsCV";
-import DownloadCV from "./components/DownloadCV";
+
+import { useReactToPrint } from "react-to-print";
 
 const App = () => {
-  // define states:
-  const [generalInfo, setGeneralInfo] = useState("");
+  const initialGeneralInfo = {
+    name: "John Doe",
+    email: "john.doe@example.com",
+    phone: "123-456-7890",
+    github: "https://github.com/johndoe",
+    linkedIn: "https://linkedin.com/in/johndoe",
+    type: "general",
+  };
+
+  const initialEducationInfo = [
+    {
+      school: "University of Example",
+      degree: "Bachelor of Science",
+      startDate: "Sep 2015",
+      endDate: "May 2019",
+      type: "education",
+      grade: ["3.8", "CGPA"],
+      city: "Example City",
+      country: "Example Country",
+    },
+  ];
+
+  const initialProjectInfo = [
+    {
+      projectName: "Project ABC",
+      techStack: "React, Node.js, MongoDB",
+      repoLink: "https://github.com/example/project-abc",
+      liveLink: "https://example.com/project-abc",
+      description: ["Developed a web application for XYZ purpose."],
+      type: "project",
+    },
+  ];
+
+  const initialExperienceInfo = [
+    {
+      company: "Example Corp",
+      position: "Software Engineer",
+      startDate: "Jan 2020",
+      endDate: "Present",
+      responsibilities: "Developed and maintained applications.",
+      type: "experience",
+    },
+  ];
+
+  const initialTechnicalSkills = {
+    languages: "JavaScript, Python",
+    toolsAndTechnologies: "React, Node.js, Git",
+    coreSubjects: "Algorithms, Data Structures",
+    type: "technicalSkills",
+  };
+
+  const [generalInfo, setGeneralInfo] = useState(initialGeneralInfo);
   const [generalEdit, setGeneralEdit] = useState(false);
 
-  const [educationInfo, setEducationInfo] = useState([]);
+  const [educationInfo, setEducationInfo] = useState(initialEducationInfo);
   const [educationEdit, setEducationEdit] = useState(false);
   const [educationId, setEducationId] = useState(0);
 
-  const [projectInfo, setProjectInfo] = useState([]);
+  const [projectInfo, setProjectInfo] = useState(initialProjectInfo);
   const [projectEdit, setProjectEdit] = useState(false);
   const [projectId, setProjectId] = useState(0);
 
-  const [experienceInfo, setExperienceInfo] = useState([]);
+  const [experienceInfo, setExperienceInfo] = useState(initialExperienceInfo);
   const [experienceEdit, setExperienceEdit] = useState(false);
   const [experienceId, setExperienceId] = useState(0);
 
-  const [technicalSkills, setTechnicalSkills] = useState("");
+  const [technicalSkills, setTechnicalSkills] = useState(
+    initialTechnicalSkills
+  );
   const [technicalSkillsEdit, setTechnicalSkillsEdit] = useState(false);
 
   const editGeneralForm = () => {
@@ -164,7 +217,11 @@ const App = () => {
     }
   };
 
-  const resumeRef = useRef();
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    documentTitle: `${generalInfo.name}'s Resume`,
+  });
 
   return (
     <div className="container">
@@ -265,35 +322,42 @@ const App = () => {
           </div>
         </div>
       </div>
-      <div className="resume-container" ref={resumeRef}>
-        <div className="general-cv">
-          {generalInfo != "" && <GeneralInfoCV props={generalInfo} />}
-        </div>
 
-        <div className="education-cv">
-          {educationInfo.length > 0 && <p className="cv-title">Education</p>}
-          <EducationInfoCV educationInfo={educationInfo} />
-        </div>
+      <div className="cv-preview">
+        <button onClick={handlePrint} className="print-button">
+          Print
+        </button>
 
-        <div className="project-cv">
-          {projectInfo.length > 0 && <p className="cv-title">Projects</p>}
-          <ProjectInfoCV projectInfo={projectInfo} />
-        </div>
+        <div className="resume-container" ref={componentRef}>
+          <div className="general-cv">
+            {generalInfo != "" && <GeneralInfoCV props={generalInfo} />}
+          </div>
 
-        <div className="experience-cv">
-          {experienceInfo.length > 0 && <p className="cv-title">Experience</p>}
-          <ExperienceInfoCV experienceInfo={experienceInfo} />
-        </div>
+          <div className="education-cv">
+            {educationInfo.length > 0 && <p className="cv-title">Education</p>}
+            <EducationInfoCV educationInfo={educationInfo} />
+          </div>
 
-        <div className="technical-skills-cv">
-          {technicalSkills != "" && (
-            <p className="cv-title">Technical Skills</p>
-          )}
-          <TechnicalSkillsCV props={technicalSkills} />
+          <div className="project-cv">
+            {projectInfo.length > 0 && <p className="cv-title">Projects</p>}
+            <ProjectInfoCV projectInfo={projectInfo} />
+          </div>
+
+          <div className="experience-cv">
+            {experienceInfo.length > 0 && (
+              <p className="cv-title">Experience</p>
+            )}
+            <ExperienceInfoCV experienceInfo={experienceInfo} />
+          </div>
+
+          <div className="technical-skills-cv">
+            {technicalSkills != "" && (
+              <p className="cv-title">Technical Skills</p>
+            )}
+            <TechnicalSkillsCV props={technicalSkills} />
+          </div>
         </div>
       </div>
-
-      <DownloadCV contentRef={resumeRef} />
     </div>
   );
 };
