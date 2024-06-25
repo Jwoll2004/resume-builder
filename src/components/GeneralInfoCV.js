@@ -44,9 +44,9 @@ const GeneralInfoCV = ({ props }) => {
 
 
               {key !== "github" && key !== "linkedIn" && (
-                <span className="cv-info">
+                <p className="cv-info">
                   {value}
-                </span>
+                </p>
               )}
             </p>
           );

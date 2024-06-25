@@ -7,10 +7,10 @@ const TechnicalSkillsCV = ({ props }) => {
 		if (value !== props.type) {
 		  return (
 			<p key={key} className={`${key} info-container`}>
-			  <span className="cv-info">
+			  <p className="cv-info">
 				<strong>{key.charAt(0).toUpperCase() + key.slice(1)}: </strong>
 				{value}
-			  </span>
+			  </p>
 			</p>
 		  );
 		}

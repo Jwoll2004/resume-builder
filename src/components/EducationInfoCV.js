@@ -29,9 +29,9 @@ const ShowItem = (props) => {
           if (key !== "type") {
             if (key === "school" || key === "startDate" || key === "endDate") {
               return (
-                <span key={key} className={key}>
+                <p key={key} className={key}>
                   {value}
-                </span>
+                </p>
               );
             }
           }
@@ -43,9 +43,9 @@ const ShowItem = (props) => {
           if (key !== "type") {
             if (key === "degree" || key === "city" || key === "country") {
               return (
-                <span key={key} className={key}>
+                <p key={key} className={key}>
                   {value}
-                </span>
+                </p>
               );
             }
           }
@@ -57,9 +57,9 @@ const ShowItem = (props) => {
           if (key !== "type") {
             if (key === "grade") {
               return (
-                <span key={key} className={key}>
+                <p key={key} className={key}>
                   {value[1]} - {value[0]}
-                </span>
+                </p>
               );
             }
           }

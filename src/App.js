@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./App.css";
 import GeneralInfoForm from "./components/GeneralInfoForm";
 import EducationForm from "./components/EducationForm";
@@ -16,6 +15,7 @@ import ProjectInfoCV from "./components/ProjectInfoCV";
 import TechnicalSkillsForm from "./components/TechnicalSkillsForm";
 import ShowTechnicalSkills from "./components/ShowTechnicalSkills";
 import TechnicalSkillsCV from "./components/TechnicalSkillsCV";
+import DownloadCV from "./components/DownloadCV";
 
 const App = () => {
   // define states:
@@ -61,46 +61,48 @@ const App = () => {
   };
 
   const deleteEntry = (obj) => {
-    if(obj.type === "education") {
-      if(educationEdit) {
-        setEducationInfo(educationInfo.filter((element, index) => {
-          if(index !== educationId) {
-            return element;
-          }
-        }
-        ));
+    if (obj.type === "education") {
+      if (educationEdit) {
+        setEducationInfo(
+          educationInfo.filter((element, index) => {
+            if (index !== educationId) {
+              return element;
+            }
+          })
+        );
         setEducationEdit(false);
         setEducationId(null);
-
       }
     }
 
-    if(obj.type === "project") {
-      if(projectEdit) {
-        setProjectInfo(projectInfo.filter((element, index) => {
-          if(index !== projectId) {
-            return element;
-          }
-        }
-        ));
+    if (obj.type === "project") {
+      if (projectEdit) {
+        setProjectInfo(
+          projectInfo.filter((element, index) => {
+            if (index !== projectId) {
+              return element;
+            }
+          })
+        );
         setProjectEdit(false);
         setProjectId(null);
       }
     }
 
-    if(obj.type === "experience") {
-      if(experienceEdit) {
-        setExperienceInfo(experienceInfo.filter((element, index) => {
-          if(index !== experienceId) {
-            return element;
-          }
-        }
-        ));
+    if (obj.type === "experience") {
+      if (experienceEdit) {
+        setExperienceInfo(
+          experienceInfo.filter((element, index) => {
+            if (index !== experienceId) {
+              return element;
+            }
+          })
+        );
         setExperienceEdit(false);
         setExperienceId(null);
       }
     }
-  }
+  };
 
   const saveForm = (obj) => {
     if (obj.type === "general") {
@@ -161,6 +163,8 @@ const App = () => {
       console.log("Invalid type");
     }
   };
+
+  const resumeRef = useRef();
 
   return (
     <div className="container">
@@ -261,37 +265,35 @@ const App = () => {
           </div>
         </div>
       </div>
-      <div className="resume-container">
-        <div className="resume">
-          <div className="general-cv">
-            {generalInfo != "" && <GeneralInfoCV props={generalInfo} />}
-          </div>
+      <div className="resume-container" ref={resumeRef}>
+        <div className="general-cv">
+          {generalInfo != "" && <GeneralInfoCV props={generalInfo} />}
+        </div>
 
-          <div className="education-cv">
-            {educationInfo.length > 0 && <p className="cv-title">Education</p>}
-            <EducationInfoCV educationInfo={educationInfo} />
-          </div>
+        <div className="education-cv">
+          {educationInfo.length > 0 && <p className="cv-title">Education</p>}
+          <EducationInfoCV educationInfo={educationInfo} />
+        </div>
 
-          <div className="project-cv">
-            {projectInfo.length > 0 && <p className="cv-title">Projects</p>}
-            <ProjectInfoCV projectInfo={projectInfo} />
-          </div>
+        <div className="project-cv">
+          {projectInfo.length > 0 && <p className="cv-title">Projects</p>}
+          <ProjectInfoCV projectInfo={projectInfo} />
+        </div>
 
-          <div className="experience-cv">
-            {experienceInfo.length > 0 && (
-              <p className="cv-title">Experience</p>
-            )}
-            <ExperienceInfoCV experienceInfo={experienceInfo} />
-          </div>
+        <div className="experience-cv">
+          {experienceInfo.length > 0 && <p className="cv-title">Experience</p>}
+          <ExperienceInfoCV experienceInfo={experienceInfo} />
+        </div>
 
-          <div className="technical-skills-cv">
-            {technicalSkills != "" && (
-              <p className="cv-title">Technical Skills</p>
-            )}
-            <TechnicalSkillsCV props={technicalSkills} />
-          </div>
+        <div className="technical-skills-cv">
+          {technicalSkills != "" && (
+            <p className="cv-title">Technical Skills</p>
+          )}
+          <TechnicalSkillsCV props={technicalSkills} />
         </div>
       </div>
+
+      <DownloadCV contentRef={resumeRef} />
     </div>
   );
 };
