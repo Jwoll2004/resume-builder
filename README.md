@@ -1,4 +1,16 @@
-# Getting Started with Create React App
+# Resume Builder
+
+Resume Builder is a web application that allows users to create a professional resume in minutes. Users can add, edit, and remove sections to customize their resume. The application also provides a live preview of the resume as it is being built.
+
+The application is built using React, HTML, CSS, and JavaScript. The users can download the resume in PDF format once they are done.
+
+Chec it out!  [Live Preview](https://resume-builder-jwacker.vercel.app/)
+ 
+![demo screenshot](src/images/resume-builder-ss.png)
+
+# Here are some React project setup details:
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
