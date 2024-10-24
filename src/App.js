@@ -15,7 +15,7 @@ import ProjectInfoCV from "./components/ProjectInfoCV";
 import TechnicalSkillsForm from "./components/TechnicalSkillsForm";
 import ShowTechnicalSkills from "./components/ShowTechnicalSkills";
 import TechnicalSkillsCV from "./components/TechnicalSkillsCV";
-
+import Footer from "./components/Footer";
 import { useReactToPrint } from "react-to-print";
 
 const App = () => {
@@ -85,7 +85,9 @@ const App = () => {
   const [experienceEdit, setExperienceEdit] = useState(false);
   const [experienceId, setExperienceId] = useState(0);
 
-  const [technicalSkills, setTechnicalSkills] = useState(initialTechnicalSkills);
+  const [technicalSkills, setTechnicalSkills] = useState(
+    initialTechnicalSkills
+  );
   const [technicalSkillsEdit, setTechnicalSkillsEdit] = useState(false);
 
   const editGeneralForm = () => {
@@ -225,140 +227,159 @@ const App = () => {
   });
 
   return (
-    <div className="container">
-      <div className="form-container">
-        <div className="form">
-          <div className="general-form">
-            <GeneralInfoForm
-              generalInfo={generalInfo}
-              isEditing={generalEdit}
-              saveForm={saveForm}
-            />
+    <div className="App">
+      <div className="container">
+        <div className="form-container">
+          <div className="form">
+            <div className="general-form">
+              <GeneralInfoForm
+                generalInfo={generalInfo}
+                isEditing={generalEdit}
+                saveForm={saveForm}
+              />
 
-            {generalInfo !== "" && (
-              <div className="general-form-show form-show">
-                <ShowGeneralInfo props={generalInfo} />
+              {generalInfo !== "" && (
+                <div className="general-form-show form-show">
+                  <ShowGeneralInfo props={generalInfo} />
 
-                <button onClick={editGeneralForm} className="edit-form">
-                  Edit
-                </button>
-              </div>
-            )}
-          </div>
+                  <button onClick={editGeneralForm} className="edit-form">
+                    Edit
+                  </button>
+                </div>
+              )}
+            </div>
 
-          <div className="education-form">
-            <EducationForm
-              educationInfo={educationInfo[educationId]}
-              isEditing={educationEdit}
-              saveForm={saveForm}
-              deleteEntry={deleteEntry}
-            />
+            <div className="education-form">
+              <EducationForm
+                educationInfo={educationInfo[educationId]}
+                isEditing={educationEdit}
+                saveForm={saveForm}
+                deleteEntry={deleteEntry}
+              />
 
-            {educationInfo.length > 0 && (
-              <div className="education-form-show form-show">
-                <ShowEducationInfo
-                  educationInfo={educationInfo}
-                  editForm={editEducationForm}
-                />
-              </div>
-            )}
-          </div>
-
-          <div className="project-form">
-            <ProjectForm
-              projectInfo={projectInfo[projectId]}
-              isEditing={projectEdit}
-              saveForm={saveForm}
-              deleteEntry={deleteEntry}
-            />
-
-            {projectInfo.length > 0 && (
-              <div className="project-form-show form-show">
-                <div className="project-info">
-                  <ShowProjectInfo
-                    projectInfo={projectInfo}
-                    editForm={editProjectForm}
+              {educationInfo.length > 0 && (
+                <div className="education-form-show form-show">
+                  <ShowEducationInfo
+                    educationInfo={educationInfo}
+                    editForm={editEducationForm}
                   />
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
 
-          <div className="experience-form">
-            <ExperienceForm
-              experienceInfo={experienceInfo[experienceId]}
-              isEditing={experienceEdit}
-              saveForm={saveForm}
-              deleteEntry={deleteEntry}
-            />
+            <div className="project-form">
+              <ProjectForm
+                projectInfo={projectInfo[projectId]}
+                isEditing={projectEdit}
+                saveForm={saveForm}
+                deleteEntry={deleteEntry}
+              />
 
-            {experienceInfo.length > 0 && (
-              <div className="experience-form-show form-show">
-                <div className="experience-info">
-                  <ShowExperienceInfo
-                    experienceInfo={experienceInfo}
-                    editForm={editExperienceForm}
-                  />
+              {projectInfo.length > 0 && (
+                <div className="project-form-show form-show">
+                  <div className="project-info">
+                    <ShowProjectInfo
+                      projectInfo={projectInfo}
+                      editForm={editProjectForm}
+                    />
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
+
+            <div className="experience-form">
+              <ExperienceForm
+                experienceInfo={experienceInfo[experienceId]}
+                isEditing={experienceEdit}
+                saveForm={saveForm}
+                deleteEntry={deleteEntry}
+              />
+
+              {experienceInfo.length > 0 && (
+                <div className="experience-form-show form-show">
+                  <div className="experience-info">
+                    <ShowExperienceInfo
+                      experienceInfo={experienceInfo}
+                      editForm={editExperienceForm}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="technical-skills-form">
+              <TechnicalSkillsForm
+                technicalSkills={technicalSkills}
+                isEditing={technicalSkillsEdit}
+                saveForm={saveForm}
+              />
+
+              {technicalSkills !== "" && (
+                <div className="technical-skills-form-show form-show">
+                  <ShowTechnicalSkills props={technicalSkills} />
+
+                  <button
+                    onClick={editTechnicalSkillsForm}
+                    className="edit-form"
+                  >
+                    Edit
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="cv-preview">
+          <div className="buttons">
+            <button onClick={handlePrint} className="curve-button">
+              Print
+            </button>
+
+            <button
+              className="curve-button"
+              onClick={() =>
+                window.scrollTo({ top: 40, behavior: "smooth" })
+              }
+            >
+              Recenter CV
+            </button>
           </div>
 
-          <div className="technical-skills-form">
-            <TechnicalSkillsForm
-              technicalSkills={technicalSkills}
-              isEditing={technicalSkillsEdit}
-              saveForm={saveForm}
-            />
+          <div className="resume-container" ref={componentRef}>
+            <div className="general-cv">
+              {generalInfo !== "" && <GeneralInfoCV props={generalInfo} />}
+            </div>
 
-            {technicalSkills !== "" && (
-              <div className="technical-skills-form-show form-show">
-                <ShowTechnicalSkills props={technicalSkills} />
+            <div className="education-cv">
+              {educationInfo.length > 0 && (
+                <p className="cv-title">Education</p>
+              )}
+              <EducationInfoCV educationInfo={educationInfo} />
+            </div>
 
-                <button onClick={editTechnicalSkillsForm} className="edit-form">
-                  Edit
-                </button>
-              </div>
-            )}
+            <div className="project-cv">
+              {projectInfo.length > 0 && <p className="cv-title">Projects</p>}
+              <ProjectInfoCV projectInfo={projectInfo} />
+            </div>
+
+            <div className="experience-cv">
+              {experienceInfo.length > 0 && (
+                <p className="cv-title">Experience</p>
+              )}
+              <ExperienceInfoCV experienceInfo={experienceInfo} />
+            </div>
+
+            <div className="technical-skills-cv">
+              {technicalSkills !== "" && (
+                <p className="cv-title">Technical Skills</p>
+              )}
+              <TechnicalSkillsCV props={technicalSkills} />
+            </div>
           </div>
         </div>
       </div>
-
-      <div className="cv-preview">
-        <button onClick={handlePrint} className="print-button">
-          Print
-        </button>
-
-        <div className="resume-container" ref={componentRef}>
-          <div className="general-cv">
-            {generalInfo !== "" && <GeneralInfoCV props={generalInfo} />}
-          </div>
-
-          <div className="education-cv">
-            {educationInfo.length > 0 && <p className="cv-title">Education</p>}
-            <EducationInfoCV educationInfo={educationInfo} />
-          </div>
-
-          <div className="project-cv">
-            {projectInfo.length > 0 && <p className="cv-title">Projects</p>}
-            <ProjectInfoCV projectInfo={projectInfo} />
-          </div>
-
-          <div className="experience-cv">
-            {experienceInfo.length > 0 && (
-              <p className="cv-title">Experience</p>
-            )}
-            <ExperienceInfoCV experienceInfo={experienceInfo} />
-          </div>
-
-          <div className="technical-skills-cv">
-            {technicalSkills !== "" && (
-              <p className="cv-title">Technical Skills</p>
-            )}
-            <TechnicalSkillsCV props={technicalSkills} />
-          </div>
-        </div>
-      </div>
+      <Footer />
     </div>
   );
 };
