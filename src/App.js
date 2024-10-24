@@ -119,6 +119,7 @@ const App = () => {
             if (index !== educationId) {
               return element;
             }
+            return null;
           })
         );
         setEducationEdit(false);
@@ -133,6 +134,7 @@ const App = () => {
             if (index !== projectId) {
               return element;
             }
+            return null;
           })
         );
         setProjectEdit(false);
@@ -147,6 +149,7 @@ const App = () => {
             if (index !== experienceId) {
               return element;
             }
+            return null;
           })
         );
         setExperienceEdit(false);
@@ -232,7 +235,7 @@ const App = () => {
               saveForm={saveForm}
             />
 
-            {generalInfo != "" && (
+            {generalInfo !== "" && (
               <div className="general-form-show form-show">
                 <ShowGeneralInfo props={generalInfo} />
 
@@ -308,7 +311,7 @@ const App = () => {
               saveForm={saveForm}
             />
 
-            {technicalSkills != "" && (
+            {technicalSkills !== "" && (
               <div className="technical-skills-form-show form-show">
                 <ShowTechnicalSkills props={technicalSkills} />
 
@@ -328,7 +331,7 @@ const App = () => {
 
         <div className="resume-container" ref={componentRef}>
           <div className="general-cv">
-            {generalInfo != "" && <GeneralInfoCV props={generalInfo} />}
+            {generalInfo !== "" && <GeneralInfoCV props={generalInfo} />}
           </div>
 
           <div className="education-cv">
