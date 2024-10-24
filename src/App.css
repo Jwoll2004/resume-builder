@@ -50,11 +50,19 @@ button:disabled:hover::after {
     font-size: 14px;
 }
 
+.App {
+    display: flex;
+    flex-direction: column;
+    gap: 10rem;
+}
 .container {
-    height: 100vh;
+    /* height: 100vh; */
+    min-height: 100vh;
+    max-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 1rem;
+    padding: 10px;
+    width: 100%;
 }
 
 .form::-webkit-scrollbar, .resume::-webkit-scrollbar{
@@ -157,36 +165,72 @@ button {
 }
 /* resume display styling */
 
+/* .cv-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+} */
+
 .cv-preview {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 10px;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    padding: 0px 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.buttons {
+    display: flex;
+    gap: 1rem;
 }
 
 .resume-container {
-    width: 21cm; 
+    width: 21cm;
     height: 29.7cm;
     background-color: white;
     padding: 16px 32px;
     border: 3px solid #000000;
     border-radius: 5px;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.329);
-
     justify-self: center;
     display: flex;
     flex-direction: column;
     gap: 0.5vw;
 }
 
-.print-button {
-    height: 2rem;
-    width: 6rem;
+
+@media screen and (max-width: 1540px) {
+    .cv-preview {
+        position: relative;
+        height: auto;
+        min-height: 0;
+    }
+    
+    .resume-container {
+        transform: scale(0.6);
+        transform-origin: top center;
+        margin-bottom: -55%; /* Compensate for the empty space created by scale */
+    }
+}
+
+/* Keep print styles unchanged */
+@media print {
+    .resume-container {
+        width: 21cm;
+        height: 29.7cm;
+        transform: none;
+        margin: 0 auto;
+    }
+}
+.curve-button {
     border-radius: 10px;
     font-weight: bold;
 }
-
 
 /* resume sections styling */
 .info-container {
@@ -342,4 +386,27 @@ button {
 .responsibilities {
     width: 100%;
     font-style: italic;
+}
+
+.footer {
+    padding: 20px;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.316);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    gap: 300px;
+    font-weight: bold;
+    width: 100%;
+}
+.footer-content {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.git { 
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
