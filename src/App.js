@@ -349,7 +349,7 @@ const App = () => {
           </div>
 
           <div className="technical-skills-cv">
-            {technicalSkills != "" && (
+            {technicalSkills !== "" && (
               <p className="cv-title">Technical Skills</p>
             )}
             <TechnicalSkillsCV props={technicalSkills} />
