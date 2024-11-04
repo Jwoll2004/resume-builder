@@ -1,3 +1,9 @@
+:root {
+    --font-size-name: clamp(16px, 1.2vw, 24px);
+    --font-size-heading: clamp(12px, 0.9vw, 20px);
+    --font-size-content: clamp(10px, 0.6vw, 16px);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -170,46 +176,32 @@ button {
 .cv-preview {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     align-items: center;
     justify-content: center; /* Center the resume on the screen */
-    padding: 0.8vh;
     box-sizing: border-box;
 }
 
 /* Resume container adjustments */
-.resume-container {
-    aspect-ratio: 1 / 1.414;
-    height: 97vh;
-    
-    padding: 2%;
-    gap: 1vw;
 
-    background-color: white;
+.resume-wrapper{
     border: 3px solid #000000;
     border-radius: 5px;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.329);
+}
+.resume-container {
+    height: 97vh;
+    aspect-ratio: 1 / 1.414;
+    
+    padding: 1% 3%;
+    gap: 0.4vw;
+
+    background-color: white;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
 }
 
-
-@media (max-width: 1024px) {
-    .resume-container {
-        width: 70vw;
-        max-width: 70vw;
-    }
-}
-
-@media print {
-    .resume-container {
-        width: 21cm;
-        height: 29.7cm;
-        transform: none;
-        margin: 0 auto;
-    }
-}
 
 /* resume sections styling */
 .info-container {
@@ -230,7 +222,8 @@ button {
     align-content: center;
     text-align: center; /* Ensure text is centered */
 
-    font-size: clamp(12px, 0.7vw, 16px);
+    /* font-size: clamp(12px, 0.7vw, 16px); */
+    font-size: var(--font-size-content);
 }
 
 /* User name */
@@ -238,12 +231,7 @@ button {
     display: block;
     width: 100%;
 
-    /* min: 12px
-    max: 48px
-    2vw = 2% of the viewport width is preferred
-    */
-    font-size: clamp(24px, 1.7vw, 48px);
-
+    font-size: var(--font-size-name);
     font-weight: bold;
 
     padding-right: 0;
@@ -254,13 +242,22 @@ button {
 }
 
 
+.entry {
+    display: flex;
+    flex-direction: column;
+    
+    font-size: var(--font-size-content);
+    padding: 0 1vw;
+    margin-bottom: 0.3vw;
+}
+
 /* EDUCATION AND EXPERIENCE SECTION */
 .education-cv, .experience-cv {
     width: 100%;
     display: flex;
     flex-direction: column;
 
-    font-size: clamp(12px, 0.6vw, 16px);
+    font-size: var(--font-size-content);
 }
 
 .cv-title {
@@ -269,17 +266,12 @@ button {
     border-bottom: 2px solid #000000;
     margin-bottom: 3px;
 
-    font-size: clamp(14px, 0.9vw, 20px);
+    font-size: var(--font-size-heading);
 }
 
-.entry {
-    display: flex;
-    flex-direction: column;
-    /* margin-bottom: 10px; */
+/* last entry of education cv and experience cv should have 0 margin */
 
-    font-size: clamp(12px, 0.6vw, 16px);
-    padding: 0 0.5vw;
-}
+
 
 /* entry first row */
 .cv-school-dates {
@@ -383,9 +375,13 @@ button {
 
 /* TECHNICAL SKILLS */
 .tech-info{
-    font-size: clamp(12px, 0.6vw, 16px);
+    font-size: var(--font-size-content);
+    
+    padding: 0 1vw;
+}
 
-    padding: 0 0.5vw;
+.education-cv .entry:last-child, .experience-cv .entry:last-child, .project-cv .entry:last-child {
+    margin-bottom: 0;
 }
 
 
@@ -394,7 +390,7 @@ button {
     padding: 20px;
     margin-top: 10px;
     box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.316);
-
+    
     display: flex;
     justify-content: center;
     align-items: center;

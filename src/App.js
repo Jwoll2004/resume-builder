@@ -220,10 +220,62 @@ const App = () => {
     }
   };
 
-  const componentRef = useRef();
+  const [printMode, setPrintMode] = useState(false);
+  const resumeContainerRef = useRef(null);
+
   const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
+    content: () => resumeContainerRef.current,
     documentTitle: `${generalInfo.name}'s Resume`,
+    onBeforeGetContent: () => {
+      setPrintMode(true);
+      if (resumeContainerRef.current) {
+        resumeContainerRef.current.style.width = "210mm";
+        resumeContainerRef.current.style.height = "297mm";
+        resumeContainerRef.current.style.padding = "5mm 5mm";
+        resumeContainerRef.current.style.border = "none";
+        resumeContainerRef.current.style.borderRadius = "0";
+        resumeContainerRef.current.style.boxShadow = "none";
+
+        // Update font sizes for print mode
+        resumeContainerRef.current.style.setProperty(
+          "--font-size-name",
+          "24px"
+        );
+        resumeContainerRef.current.style.setProperty(
+          "--font-size-heading",
+          "20px"
+        );
+        resumeContainerRef.current.style.setProperty(
+          "--font-size-content",
+          "16px"
+        );
+      }
+    },
+    onAfterPrint: () => {
+      setPrintMode(false);
+      if (resumeContainerRef.current) {
+        resumeContainerRef.current.style.width = "";
+        resumeContainerRef.current.style.height = "";
+        resumeContainerRef.current.style.padding = "";
+        resumeContainerRef.current.style.border = "";
+        resumeContainerRef.current.style.borderRadius = "";
+        resumeContainerRef.current.style.boxShadow = "";
+
+        // Reset font sizes after print mode
+        resumeContainerRef.current.style.setProperty(
+          "--font-size-name",
+          ""
+        );
+        resumeContainerRef.current.style.setProperty(
+          "--font-size-heading",
+          ""
+        );
+        resumeContainerRef.current.style.setProperty(
+          "--font-size-content",
+          ""
+        );
+      }
+    },
   });
 
   return (
@@ -338,48 +390,51 @@ const App = () => {
 
             <button
               className="curve-button"
-              onClick={() =>
-                window.scrollTo({ top: 40, behavior: "smooth" })
-              }
+              onClick={() => window.scrollTo({ top: 40, behavior: "smooth" })}
             >
               Recenter CV
             </button>
           </div>
 
-          <div className="resume-container" ref={componentRef}>
-            <div className="general-cv">
-              {generalInfo !== "" && <GeneralInfoCV props={generalInfo} />}
-            </div>
+          <div className="resume-wrapper">
+            <div
+              className={`resume-container ${printMode ? "print-mode" : ""}`}
+              ref={resumeContainerRef}
+            >
+              <div className="general-cv">
+                {generalInfo !== "" && <GeneralInfoCV props={generalInfo} />}
+              </div>
 
-            <div className="education-cv">
-              {educationInfo.length > 0 && (
-                <p className="cv-title">Education</p>
-              )}
-              <EducationInfoCV educationInfo={educationInfo} />
-            </div>
+              <div className="education-cv">
+                {educationInfo.length > 0 && (
+                  <p className="cv-title">Education</p>
+                )}
+                <EducationInfoCV educationInfo={educationInfo} />
+              </div>
 
-            <div className="project-cv">
-              {projectInfo.length > 0 && <p className="cv-title">Projects</p>}
-              <ProjectInfoCV projectInfo={projectInfo} />
-            </div>
+              <div className="project-cv">
+                {projectInfo.length > 0 && <p className="cv-title">Projects</p>}
+                <ProjectInfoCV projectInfo={projectInfo} />
+              </div>
 
-            <div className="experience-cv">
-              {experienceInfo.length > 0 && (
-                <p className="cv-title">Experience</p>
-              )}
-              <ExperienceInfoCV experienceInfo={experienceInfo} />
-            </div>
+              <div className="experience-cv">
+                {experienceInfo.length > 0 && (
+                  <p className="cv-title">Experience</p>
+                )}
+                <ExperienceInfoCV experienceInfo={experienceInfo} />
+              </div>
 
-            <div className="technical-skills-cv">
-              {technicalSkills !== "" && (
-                <p className="cv-title">Technical Skills</p>
-              )}
-              <TechnicalSkillsCV props={technicalSkills} />
+              <div className="technical-skills-cv">
+                {technicalSkills !== "" && (
+                  <p className="cv-title">Technical Skills</p>
+                )}
+                <TechnicalSkillsCV props={technicalSkills} />
+              </div>
             </div>
           </div>
         </div>
       </div>
-      
+
       <Footer />
     </div>
   );
