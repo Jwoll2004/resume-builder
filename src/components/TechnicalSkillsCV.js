@@ -15,7 +15,7 @@ const TechnicalSkillsCV = ({ props }) => {
 		  }
           return (
             <p key={key} className={`${key} info-container`}>
-              <p className="cv-info">
+              <p className="tech-info">
                 <strong>{displayKey.charAt(0).toUpperCase() + displayKey.slice(1)}: </strong>
                 {value}
               </p>

@@ -48,12 +48,12 @@ button:disabled:hover::after {
 .App {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    gap: 5rem;
 }
+
 .container {
     padding: 10px;
     width: 100%;
+    height: 100%;
     display: flex;
     justify-content: space-around;
     
@@ -65,6 +65,7 @@ button:disabled:hover::after {
     height: 100vh;
     display: grid;
     justify-content: center;
+    align-self: flex-end;
     grid-template-columns: minmax(400px, 0.6fr);
 
     padding: 15px;
@@ -157,59 +158,50 @@ button {
 }
 /* resume display styling */
 
-/* .cv-preview {
+.buttons {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-} */
+    gap: 1rem;
+}
+.curve-button {
+    border-radius: 10px;
+    font-weight: bold;
+}
 
 .cv-preview {
     display: flex;
     flex-direction: column;
     gap: 10px;
     align-items: center;
-    justify-content: flex-start;
-    padding: 0px 0;
-    height: 100%;
+    justify-content: center; /* Center the resume on the screen */
+    padding: 0.8vh;
+    box-sizing: border-box;
 }
 
-.buttons {
-    display: flex;
-    gap: 1rem;
-}
-
+/* Resume container adjustments */
 .resume-container {
-    width: 21cm;
-    height: 29.7cm;
+    aspect-ratio: 1 / 1.414;
+    height: 97vh;
+    
+    padding: 2%;
+    gap: 1vw;
+
     background-color: white;
-    padding: 16px 32px;
     border: 3px solid #000000;
     border-radius: 5px;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.329);
-    justify-self: center;
     display: flex;
     flex-direction: column;
-    gap: 0.5vw;
+    box-sizing: border-box;
 }
 
 
-@media screen and (max-width: 1540px) {
-    .cv-preview {
-        position: relative;
-        height: auto;
-        min-height: 0;
-    }
-    
+@media (max-width: 1024px) {
     .resume-container {
-        transform: scale(0.6);
-        transform-origin: top center;
-        margin-bottom: -60%; /* Compensate for the empty space created by scale */
+        width: 70vw;
+        max-width: 70vw;
     }
 }
 
-/* Keep print styles unchanged */
 @media print {
     .resume-container {
         width: 21cm;
@@ -218,10 +210,6 @@ button {
         margin: 0 auto;
     }
 }
-.curve-button {
-    border-radius: 10px;
-    font-weight: bold;
-}
 
 /* resume sections styling */
 .info-container {
@@ -229,13 +217,10 @@ button {
     align-items: center;
     gap: 0.2rem;
     padding-right: 20px;
-    font-size: 14px;
 }
 
-.general-cv .info-container:last-child {
-    padding-right: 0;
-}
 
+/*  TOP GENERAL SECTION  */
 .general-cv {
     width: 100%;
     height: auto; /* Make height auto for better responsiveness */
@@ -244,44 +229,62 @@ button {
     justify-content: center;
     align-content: center;
     text-align: center; /* Ensure text is centered */
+
+    font-size: clamp(12px, 0.7vw, 16px);
 }
 
+/* User name */
 .general-cv .name {
     display: block;
     width: 100%;
-    font-size: 48px; /* Responsive font size */
+
+    /* min: 12px
+    max: 48px
+    2vw = 2% of the viewport width is preferred
+    */
+    font-size: clamp(24px, 1.7vw, 48px);
+
     font-weight: bold;
-    padding-bottom: 5px;
+
+    padding-right: 0;
+}
+
+.general-cv .info-container:last-child {
     padding-right: 0;
 }
 
 
+/* EDUCATION AND EXPERIENCE SECTION */
 .education-cv, .experience-cv {
     width: 100%;
     display: flex;
     flex-direction: column;
+
+    font-size: clamp(12px, 0.6vw, 16px);
 }
 
 .cv-title {
-    font-size: 24px; /* Responsive font size */
     font-weight: bold;
     width: 100%;
     border-bottom: 2px solid #000000;
     margin-bottom: 3px;
+
+    font-size: clamp(14px, 0.9vw, 20px);
 }
 
 .entry {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
-    font-size: 14px; 
+    /* margin-bottom: 10px; */
+
+    font-size: clamp(12px, 0.6vw, 16px);
+    padding: 0 0.5vw;
 }
 
 /* entry first row */
 .cv-school-dates {
     display: flex;
     align-items: center;
-    font-size: 14px;
 }
 
 .school {
@@ -322,7 +325,6 @@ button {
 .cv-project {
     display: grid;
     grid-template-columns: max-content 1fr 1fr;
-    font-size: 14px;
     align-items: center;
 }
 .projectName {
@@ -379,6 +381,15 @@ button {
     font-style: italic;
 }
 
+/* TECHNICAL SKILLS */
+.tech-info{
+    font-size: clamp(12px, 0.6vw, 16px);
+
+    padding: 0 0.5vw;
+}
+
+
+/*  FOOTER */
 .footer {
     padding: 20px;
     margin-top: 10px;
