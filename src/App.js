@@ -39,6 +39,28 @@ const App = () => {
       city: "Example City",
       country: "Example Country",
     },
+
+    {
+      school: "Example School",
+      degree: "High School Diploma",
+      startDate: "Sep 2011",
+      endDate: "May 2015",
+      type: "education",
+      grade: ["4.0", "GPA"],
+      city: "Example City",
+      country: "Example Country",
+    },
+
+    {
+      school: "Example Institute",
+      degree: "Certification",
+      startDate: "Sep 2020",
+      endDate: "Dec 2020",
+      type: "education",
+      grade: ["A+", "Grade"],
+      city: "Example City",
+      country: "Example Country",
+    }
   ];
 
   const initialProjectInfo = [
@@ -50,6 +72,24 @@ const App = () => {
       description: ["Developed a web application for XYZ purpose."],
       type: "project",
     },
+
+    {
+      projectName: "Project XYZ",
+      techStack: "Python, Django",
+      repoLink: "https://github.com/example/project-abc",
+      liveLink: "https://example.com/project-abc",
+      description: ["Developed a web application for ABC purpose."],
+      type: "project",
+    },
+
+    {
+      projectName: "Project 123",
+      techStack: "JavaScript, Express",
+      repoLink: "https://github.com/example/project-abc",
+      liveLink: "https://example.com/project-abc",
+      description: ["Developed a web application for DEF purpose."],
+      type: "project",
+    }
   ];
 
   const initialExperienceInfo = [
@@ -61,12 +101,30 @@ const App = () => {
       responsibilities: "Developed and maintained applications.",
       type: "experience",
     },
+
+    {
+      company: "Example Inc",
+      position: "Intern",
+      startDate: "May 2019",
+      endDate: "Aug 2019",
+      responsibilities: "Assisted with development tasks.",
+      type: "experience",
+    },
+
+    {
+      company: "Example LLC",
+      position: "Volunteer",
+      startDate: "Sep 2019",
+      endDate: "Dec 2019",
+      responsibilities: "Helped with organizing events.",
+      type: "experience",
+    }
   ];
 
   const initialTechnicalSkills = {
-    languages: "JavaScript, Python",
-    toolsAndTechnologies: "React, Node.js, Git",
-    coreSubjects: "Algorithms, Data Structures",
+    languages: "JavaScript, Python, Java, C++, HTML, CSS, SQL",
+    toolsAndTechnologies: "React, Node.js, Git, Docker, MongoDB, Express, Django, Bootstrap, jQuery, RESTful APIs",
+    coreSubjects: "Algorithms, Data Structures, Databases, Web Development, Software Engineering, Operating Systems, Computer Networks, Cybersecurity, Machine Learning",
     type: "technicalSkills",
   };
 
@@ -278,6 +336,15 @@ const App = () => {
     },
   });
 
+  // const resumePreviewRef = useRef(null);
+  const handleRecenterCV = () => {
+    if (resumeContainerRef.current) {
+      resumeContainerRef.current.parentElement.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
   return (
     <div className="App">
       <div className="container">
@@ -389,8 +456,8 @@ const App = () => {
             </button>
 
             <button
+              onClick={handleRecenterCV}
               className="curve-button"
-              onClick={() => window.scrollTo({ top: 40, behavior: "smooth" })}
             >
               Recenter CV
             </button>
