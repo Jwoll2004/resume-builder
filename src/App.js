@@ -339,9 +339,13 @@ const App = () => {
   // const resumePreviewRef = useRef(null);
   const handleRecenterCV = () => {
     if (resumeContainerRef.current) {
-      resumeContainerRef.current.parentElement.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
+      const yOffset = -10;
+      const element = resumeContainerRef.current;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      
+      window.scrollTo({
+        top: y,
+        behavior: 'smooth'
       });
     }
   };
@@ -358,7 +362,7 @@ const App = () => {
               />
 
               {generalInfo !== "" && (
-                <div className="general-form-show form-show">
+                <div className="general-form-show form-show show-info">
                   <ShowGeneralInfo props={generalInfo} />
 
                   <button onClick={editGeneralForm} className="edit-form">
@@ -434,7 +438,7 @@ const App = () => {
               />
 
               {technicalSkills !== "" && (
-                <div className="technical-skills-form-show form-show">
+                <div className="technical-skills-form-show form-show show-info"> 
                   <ShowTechnicalSkills props={technicalSkills} />
 
                   <button
