@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import "./App.css";
 import Header from "./components/Header/Header.js";
+import ResumeGuide from "./components/ResumeGuide/ResumeGuide.js";
 import GeneralInfoForm from "./components/GeneralInfoForm";
 import EducationForm from "./components/EducationForm";
 import ExperienceForm from "./components/ExperienceForm";
@@ -347,6 +348,8 @@ const App = () => {
   return (
     <div className="App">
       <Header />
+
+      <ResumeGuide />
 
       <div className="container" id="resume-section">
         <div className="buttons">

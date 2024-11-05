@@ -1,34 +1,47 @@
 .header {
   display: flex;
   width: 100%;
-  justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background-color: #9fe3ec9a;
-  border-bottom: 1px solid #e9ecef;
+  padding: 1rem;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.148);
+  background-color: #9ef4ff9a;
+  border-bottom: 3px solid #000000;
+}
 
-  color: white;
+.header-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
 }
 
 .header h1 {
-  font-size: clamp(24px, 2.5vw, 48px);
-  /* text shadow */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.393);
-}
-
-/* Remove button appearance */
-.scroll-link {
-  background: none;
-  border: none;
-  color: #000000; /* Link color */
-  cursor: pointer;
-  font-size: clamp(8px, 1vw, 22px);
+  font-size: 2rem;
   font-weight: bold;
-  text-decoration: none;
-  padding: 0;
+  color: #1a1a1a;
+  margin: 0;
 }
 
-/* Hover effect */
+.scroll-link {
+  background-color: rgb(118, 204, 254);
+  border: none;
+  color: white;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .scroll-link:hover {
-	color: #ffffff; 
+  background-color: rgb(133, 168, 254);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

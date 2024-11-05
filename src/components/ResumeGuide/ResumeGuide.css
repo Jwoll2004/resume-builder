@@ -1,0 +1,272 @@
+.resume-tips-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.resume-tips-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.resume-tips-header h1 {
+  color: #2d3748;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #718096;
+  font-size: 1.1rem;
+}
+
+.tip-section {
+  margin-bottom: 1.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tip-section ul {
+	padding-left: 50px;
+	padding-top: 10px;
+}
+
+.section-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: #f8fafc;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.section-header:hover {
+  background-color: #f1f5f9;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #334155;
+}
+
+.arrow-icon {
+  font-size: 0.8rem;
+  color: #64748b;
+  transition: transform 0.3s ease;
+}
+
+.arrow-icon.expanded {
+  transform: rotate(-180deg);
+}
+
+.section-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out;
+}
+
+.section-content.expanded {
+  max-height: 1200px;
+}
+
+.section-content ul {
+  margin: 0;
+  list-style-type: none;
+}
+
+.section-content li {
+  margin-bottom: 0.75rem;
+  color: #475569;
+  position: relative;
+  padding: 0;
+}
+
+.section-content li::before {
+  content: "•";
+  color: #3b82f6;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+/* Power Tips Grid Styling */
+.power-tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.power-tip-column {
+  background-color: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.power-tip-column h3 {
+  color: #2563eb;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #bfdbfe;
+  font-size: 1.1rem;
+}
+
+.power-tip-column li {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+.power-tip-column ul, .industry-column ul {
+	padding-top: 0;
+	padding-left: 30px;
+}
+
+.resume-tips-footer {
+  margin-top: 3rem;
+}
+
+.highlight-box {
+  background-color: #ebf5ff;
+  border-left: 4px solid #3b82f6;
+  padding: 1.5rem;
+  border-radius: 0 8px 8px 0;
+}
+
+.highlight-box h3 {
+  color: #1e40af;
+  margin: 0 0 0.5rem 0;
+}
+
+.highlight-box p {
+  color: #334155;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .resume-tips-container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .resume-tips-header h1 {
+    font-size: 2rem;
+  }
+
+  .section-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .power-tips-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .power-tip-column {
+    padding: 1rem;
+  }
+}
+
+/* Add these styles to your ResumeTips.css file */
+
+.industry-advice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.industry-column {
+  background-color: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.industry-column h3 {
+  color: #2563eb;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #bfdbfe;
+  font-size: 1.1rem;
+}
+
+
+.language-tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  background-color: #f8fafc;
+}
+
+.language-column {
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.language-column h3 {
+  color: #2563eb;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.language-column ul{
+  padding: 0;
+}
+
+.verb-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.verb-list li {
+  background-color: #ebf5ff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  color: #2563eb;
+  margin: 0 !important;
+}
+
+.verb-list li::before {
+  display: none;
+}
+
+.topic-name {
+  font-weight: 600;
+  color: #000000;
+}
+
+/* Optional: Add a subtle transition on hover */
+li:hover .topic-name {
+  color: #3b82f6;
+}
+
+@media (max-width: 768px) {
+  .industry-advice-grid,
+  .language-tips-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .verb-list {
+    gap: 0.25rem;
+  }
+}
