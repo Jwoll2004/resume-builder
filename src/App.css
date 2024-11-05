@@ -74,17 +74,20 @@ button:disabled:hover::after {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 2vw;
 }
 
 .container {
-    margin: 50px;
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.container .buttons{
+    grid-column: 2 / span 1;
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 10vw;        
 }
 
 /* form styling */
@@ -92,9 +95,12 @@ button:disabled:hover::after {
 .form-container {
     height: 98vh;
     width: 35vw;
+    justify-self: center;
+
     display: grid;
     justify-content: center;
     grid-template-columns: minmax(400px, 30vw);
+
     padding: 20px;
     margin: 10px;
     background-color: #f0f4f8; /* Light background color */
@@ -140,7 +146,7 @@ form {
     flex-direction: column;
     gap: 0.5rem;
     padding: 0.5rem;
-    background-color: #9fe3ec9a; /* White background */
+    background-color: #9fe3ec9a;
     border-radius: 10px;
 }
 
@@ -178,12 +184,17 @@ button {
     color: white;
     border: none;
     cursor: pointer;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
+    padding-top: clamp(0.5rem, 0.7vw, 1rem);
+    padding-bottom: clamp(0.5rem, 0.7vw, 1rem);
+    padding-left: clamp(1rem, 1.4vw, 1.5rem);
+    padding-right: clamp(1rem, 1.4vw, 1.5rem);
+
+    font-size: clamp(12px, 1vw, 16px);
+    border-radius: 10px;
     transition: background-color 0.3s;
 }
 
-button:hover {
+.container button:hover {
     background-color: #28d02c; /* Darker green on hover */
 }
 
@@ -201,10 +212,11 @@ button:hover {
 }
 
 .show-info {
-    border-left: 2px solid #000000;
+    /* border-left: 2px solid #000000; */
     border-bottom: 2px solid #000000;
     padding-left: 10px;
     padding-bottom: 10px;
+    padding-top: 5px;
 }
 .show-info div {
     display: flex;
@@ -228,7 +240,8 @@ button:hover {
 
 .cv-preview {
     height: 100%;
-    
+    justify-self: center;
+
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -242,7 +255,7 @@ button:hover {
 .resume-wrapper{
     border: 3px solid #000000;
     border-radius: 5px;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.329);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.212);
 }
 .resume-container {
     aspect-ratio: 1 / 1.414;

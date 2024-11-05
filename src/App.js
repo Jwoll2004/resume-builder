@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./App.css";
+import Header from "./components/Header/Header.js";
 import GeneralInfoForm from "./components/GeneralInfoForm";
 import EducationForm from "./components/EducationForm";
 import ExperienceForm from "./components/ExperienceForm";
@@ -60,7 +61,7 @@ const App = () => {
       grade: ["A+", "Grade"],
       city: "Example City",
       country: "Example Country",
-    }
+    },
   ];
 
   const initialProjectInfo = [
@@ -89,7 +90,7 @@ const App = () => {
       liveLink: "https://example.com/project-abc",
       description: ["Developed a web application for DEF purpose."],
       type: "project",
-    }
+    },
   ];
 
   const initialExperienceInfo = [
@@ -118,13 +119,15 @@ const App = () => {
       endDate: "Dec 2019",
       responsibilities: "Helped with organizing events.",
       type: "experience",
-    }
+    },
   ];
 
   const initialTechnicalSkills = {
     languages: "JavaScript, Python, Java, C++, HTML, CSS, SQL",
-    toolsAndTechnologies: "React, Node.js, Git, Docker, MongoDB, Express, Django, Bootstrap, jQuery, RESTful APIs",
-    coreSubjects: "Algorithms, Data Structures, Databases, Web Development, Software Engineering, Operating Systems, Computer Networks, Cybersecurity, Machine Learning",
+    toolsAndTechnologies:
+      "React, Node.js, Git, Docker, MongoDB, Express, Django, Bootstrap, jQuery, RESTful APIs",
+    coreSubjects:
+      "Algorithms, Data Structures, Databases, Web Development, Software Engineering, Operating Systems, Computer Networks, Cybersecurity, Machine Learning",
     type: "technicalSkills",
   };
 
@@ -320,18 +323,9 @@ const App = () => {
         resumeContainerRef.current.style.boxShadow = "";
 
         // Reset font sizes after print mode
-        resumeContainerRef.current.style.setProperty(
-          "--font-size-name",
-          ""
-        );
-        resumeContainerRef.current.style.setProperty(
-          "--font-size-heading",
-          ""
-        );
-        resumeContainerRef.current.style.setProperty(
-          "--font-size-content",
-          ""
-        );
+        resumeContainerRef.current.style.setProperty("--font-size-name", "");
+        resumeContainerRef.current.style.setProperty("--font-size-heading", "");
+        resumeContainerRef.current.style.setProperty("--font-size-content", "");
       }
     },
   });
@@ -341,17 +335,30 @@ const App = () => {
     if (resumeContainerRef.current) {
       const yOffset = -10;
       const element = resumeContainerRef.current;
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      
+      const y =
+        element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
       window.scrollTo({
         top: y,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
   return (
     <div className="App">
-      <div className="container">
+      <Header />
+
+      <div className="container" id="resume-section">
+        <div className="buttons">
+          <button onClick={handlePrint} className="curve-button">
+            Print
+          </button>
+
+          <button onClick={handleRecenterCV} className="curve-button">
+            Recenter CV
+          </button>
+        </div>
+
         <div className="form-container">
           <div className="form">
             <div className="general-form">
@@ -438,7 +445,7 @@ const App = () => {
               />
 
               {technicalSkills !== "" && (
-                <div className="technical-skills-form-show form-show show-info"> 
+                <div className="technical-skills-form-show form-show show-info">
                   <ShowTechnicalSkills props={technicalSkills} />
 
                   <button
@@ -454,19 +461,6 @@ const App = () => {
         </div>
 
         <div className="cv-preview">
-          <div className="buttons">
-            <button onClick={handlePrint} className="curve-button">
-              Print
-            </button>
-
-            <button
-              onClick={handleRecenterCV}
-              className="curve-button"
-            >
-              Recenter CV
-            </button>
-          </div>
-
           <div className="resume-wrapper">
             <div
               className={`resume-container ${printMode ? "print-mode" : ""}`}
