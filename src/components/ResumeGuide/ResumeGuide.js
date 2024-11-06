@@ -84,12 +84,6 @@ const ResumeGuide = () => {
     {
       id: "essential",
       title: "Essential Components",
-      //   items: [
-      //     "Contact Information - Place your name, phone, email, and location prominently at the top",
-      //     "Work Experience - List relevant positions in reverse chronological order (most recent first)",
-      //     "Education - Include degrees, grades, certifications, and expected graduation date",
-      //     "Skills - Feature both technical and soft skills relevant to your target role",
-      //   ],
       items: [
         {
           topic: "Contact Information",

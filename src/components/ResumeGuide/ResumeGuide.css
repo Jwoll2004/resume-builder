@@ -4,7 +4,7 @@
   padding: 2rem;
   background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .resume-tips-header {
@@ -32,6 +32,7 @@
 
 .tip-section ul {
 	padding-left: 50px;
+  padding-right: 10px;
 	padding-top: 10px;
 }
 
@@ -60,21 +61,23 @@
 .arrow-icon {
   font-size: 0.8rem;
   color: #64748b;
-  transition: transform 0.3s ease;
+  transition: transform 0.8s ease;
 }
 
 .arrow-icon.expanded {
   transform: rotate(-180deg);
+  transition: transform 0.5s ease;
 }
 
 .section-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease-out;
+  transition: max-height 0.4s ease-out;
 }
 
 .section-content.expanded {
   max-height: 1200px;
+  transition: max-height 1s ease-in;
 }
 
 .section-content ul {
@@ -97,7 +100,6 @@
   font-weight: bold;
 }
 
-/* Power Tips Grid Styling */
 .power-tips-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -177,8 +179,6 @@
   }
 }
 
-/* Add these styles to your ResumeTips.css file */
-
 .industry-advice-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -253,7 +253,6 @@
   color: #000000;
 }
 
-/* Optional: Add a subtle transition on hover */
 li:hover .topic-name {
   color: #3b82f6;
 }
