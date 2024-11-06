@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import Header from "./components/Header/Header.js";
 import ResumeGuide from "./components/ResumeGuide/ResumeGuide.js";
@@ -151,6 +151,32 @@ const App = () => {
     initialTechnicalSkills
   );
   const [technicalSkillsEdit, setTechnicalSkillsEdit] = useState(false);
+
+  const middleSectionRef = useRef(null);
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+        ([entry]) => {
+            if (entry.isIntersecting) {
+                setAnimate(true);  // Add the animation class
+            } else {
+                setAnimate(false); // Remove the animation class if needed
+            }
+        },
+        { threshold: 0.5 } // Trigger when 50% of the middle section is visible
+    );
+
+    if (middleSectionRef.current) {
+        observer.observe(middleSectionRef.current);
+    }
+
+    return () => {
+        if (middleSectionRef.current) {
+            observer.unobserve(middleSectionRef.current);
+        }
+    };
+}, []);
 
   const editGeneralForm = () => {
     setGeneralEdit(!generalEdit);
@@ -350,6 +376,12 @@ const App = () => {
       <Header />
 
       <ResumeGuide />
+
+      <div className={`middle-section ${animate ? "scroll-animation" : ""}`} ref={middleSectionRef}
+      >
+        <h1>Ready to Build Your Resume?</h1>
+        <p>Let's get started and create a resume that stands out!</p>
+      </div>
 
       <div className="container" id="resume-section">
         <div className="buttons">
