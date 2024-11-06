@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { InputBox } from "./InputBox";
-import { FormButtons } from "./FormButtons";
+import { InputBox } from "../InputBox";
+import { FormButtons } from "../FormButtons";
 
 const GeneralInfoForm = (props) => {
   const [name, setName] = useState("");

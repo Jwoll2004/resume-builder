@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { InputBox } from './InputBox';
-import { FormButtons } from './FormButtons';
+import { InputBox } from "../InputBox";
+import { FormButtons } from "../FormButtons";
 
 const TechnicalSkillsForm = (props) => {
 	const [languages, setLanguages] = useState('');

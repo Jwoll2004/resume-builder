@@ -1,4 +1,4 @@
-import github from "../assets/images/githubmono.svg";
+import github from "../../assets/images/githubmono.svg";
 
 
 const Footer = () => {
