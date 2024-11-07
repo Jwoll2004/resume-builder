@@ -1,0 +1,29 @@
+.custom-section {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #eaf6ff;
+    border: 1px solid #b3d7ff;
+    border-radius: 5px;
+}
+
+.custom-section h4 {
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.subsection h5 {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 3px;
+}
+
+.custom-input {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
