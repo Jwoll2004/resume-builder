@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import Header from "./components/Header/Header.js";
 import ResumeGuide from "./components/ResumeGuide/ResumeGuide.js";
+import CustomFormButtons from "./components/Forms/AddSection/CustomFormButtons.js";
+import ShowCustomSection from "./components/Forms/AddSection/ShowCustomSection/ShowCustomSection.js";
+import CustomSectionForm from "./components/Forms/AddSection/CustomSectionForm/CustomSectionForm.js";
 import GeneralInfoForm from "./components/Forms/GeneralInfoForm/GeneralInfoForm.js";
 import EducationForm from "./components/Forms/EducationForm/EducationForm.js";
 import ExperienceForm from "./components/Forms/ExperienceForm/ExperienceForm.js";
@@ -155,28 +158,51 @@ const App = () => {
   const middleSectionRef = useRef(null);
   const [animate, setAnimate] = useState(false);
 
+  // Custom sections are taken from dialog as objects and not arrays
+  const [customSections, setCustomSections] = useState([]);
+  const [customSectionEdit, setCustomSectionEdit] = useState({
+    id: null,
+    editing: false,
+  });
+
+  const handleAddSectionClick = () => {
+    console.log(customSections.length);
+    setCustomSections([
+      ...customSections,
+      {
+        type: `customSection-${customSections.length}`,
+        title: "",
+        subsectionsWithHeading: [{ heading: "", items: [] }],
+      },
+    ]);
+  };
+
+  const editCustomSection = (id) => {
+    setCustomSectionEdit({ id, editing: true });
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
-        ([entry]) => {
-            if (entry.isIntersecting) {
-                setAnimate(true);  // Add the animation class
-            } else {
-                setAnimate(false); // Remove the animation class if needed
-            }
-        },
-        { threshold: 0.5 } // Trigger when 50% of the middle section is visible
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setAnimate(true);
+        } else {
+          setAnimate(false);
+        }
+      },
+      { threshold: 0.5 }
     );
 
     if (middleSectionRef.current) {
-        observer.observe(middleSectionRef.current);
+      observer.observe(middleSectionRef.current);
     }
 
     return () => {
-        if (middleSectionRef.current) {
-            observer.unobserve(middleSectionRef.current);
-        }
+      if (middleSectionRef.current) {
+        observer.unobserve(middleSectionRef.current);
+      }
     };
-}, []);
+  }, []);
 
   const editGeneralForm = () => {
     setGeneralEdit(!generalEdit);
@@ -303,8 +329,16 @@ const App = () => {
     } else if (obj.type === "technicalSkills") {
       setTechnicalSkills(obj);
       setTechnicalSkillsEdit(false);
-    } else {
-      console.log("Invalid type");
+    } else if (obj.type.startsWith("customSection")) {
+      console.log("Saving custom section", obj);
+      console.log("intial custom section", customSections);
+      console.log("Custom section index", obj.type.split("-")[1]);
+
+      const customSectionsCopy = [...customSections];
+      customSectionsCopy[obj.type.split("-")[1]] = obj;
+
+      setCustomSections(customSectionsCopy);
+      setCustomSectionEdit({ id: null, editing: false });
     }
   };
 
@@ -377,7 +411,9 @@ const App = () => {
 
       <ResumeGuide />
 
-      <div className={`middle-section ${animate ? "scroll-animation" : ""}`} ref={middleSectionRef}
+      <div
+        className={`middle-section ${animate ? "scroll-animation" : ""}`}
+        ref={middleSectionRef}
       >
         <h1>Ready to Build Your Resume?</h1>
         <p>Let's get started and create a resume that stands out!</p>
@@ -395,6 +431,8 @@ const App = () => {
         </div>
 
         <div className="form-container">
+          <CustomFormButtons addSection={handleAddSectionClick} />
+
           <div className="form">
             <div className="general-form">
               <GeneralInfoForm
@@ -473,12 +511,14 @@ const App = () => {
             </div>
 
             <div className="technical-skills-form">
+              {/* renders technical skills form */}
               <TechnicalSkillsForm
                 technicalSkills={technicalSkills}
                 isEditing={technicalSkillsEdit}
                 saveForm={saveForm}
               />
 
+              {/* if technical skills has some data saved then it displays the data with an edit option below the form */}
               {technicalSkills !== "" && (
                 <div className="technical-skills-form-show form-show show-info">
                   <ShowTechnicalSkills props={technicalSkills} />
@@ -492,6 +532,34 @@ const App = () => {
                 </div>
               )}
             </div>
+
+            {customSections.map((section, index) => (
+              <div className="custom-form" key={index}>
+                <CustomSectionForm
+                  sectionData={section}
+                  isEditing={
+                    customSectionEdit.id === index && customSectionEdit.editing
+                  }
+                  saveForm={saveForm}
+                />
+                {section.subsectionsWithHeading &&
+                  section.subsectionsWithHeading.length > 0 &&
+                  section.subsectionsWithHeading.every(
+                    (subsection) => subsection.items.length > 0
+                  ) && (
+                    <div className="custom-form-show form-show show-info">
+                      <ShowCustomSection section={section} />
+
+                      <button
+                        onClick={() => editCustomSection(index)}
+                        className="edit-form"
+                      >
+                        Edit
+                      </button>
+                    </div>
+                  )}
+              </div>
+            ))}
           </div>
         </div>
 

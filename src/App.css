@@ -115,7 +115,7 @@ button {
 
 .form-container {
   height: 98vh;
-  width: 35vw;
+  width: clamp(500px, 40vw, 800px);
   justify-self: center;
 
   display: grid;
