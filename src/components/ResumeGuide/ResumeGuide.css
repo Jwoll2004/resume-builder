@@ -31,9 +31,9 @@
 }
 
 .tip-section ul {
-	padding-left: 50px;
+  padding-left: 50px;
   padding-right: 10px;
-	padding-top: 10px;
+  padding-top: 10px;
 }
 
 .section-header {
@@ -128,9 +128,10 @@
   margin-bottom: 0.75rem;
 }
 
-.power-tip-column ul, .industry-column ul {
-	padding-top: 0;
-	padding-left: 30px;
+.power-tip-column ul,
+.industry-column ul {
+  padding-top: 0;
+  padding-left: 30px;
 }
 
 .resume-tips-footer {
@@ -201,7 +202,6 @@
   font-size: 1.1rem;
 }
 
-
 .language-tips-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -224,7 +224,7 @@
   text-align: center;
 }
 
-.language-column ul{
+.language-column ul {
   padding: 0;
 }
 
@@ -257,7 +257,7 @@ li:hover .topic-name {
   color: #3b82f6;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 880px) {
   .industry-advice-grid,
   .language-tips-grid {
     grid-template-columns: 1fr;
@@ -267,5 +267,58 @@ li:hover .topic-name {
 
   .verb-list {
     gap: 0.25rem;
+  }
+
+  /* Resume Tips Container */
+  .resume-tips-container {
+    margin: 1rem;
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .resume-tips-header h1 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  /* Single-column layout for tips and industry advice sections */
+  .power-tips-grid,
+  .industry-advice-grid,
+  .language-tips-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .power-tip-column,
+  .industry-column,
+  .language-column {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .highlight-box {
+    padding: 1rem;
+  }
+
+  /* Language column styling for better readability */
+  .language-column h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Adjust verb list spacing */
+  .verb-list {
+    gap: 0.25rem;
+    padding: 0.5rem;
+  }
+
+  .verb-list li {
+    font-size: 0.85rem;
+    padding: 0.2rem 0.6rem;
   }
 }

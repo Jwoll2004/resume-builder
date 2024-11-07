@@ -201,7 +201,7 @@ const CustomSectionForm = (props) => {
 
         {/* if subsections exist, only then display this button */}
 
-        {sectionData.subsectionsWithHeading.length > 0 && (
+        {sectionData.subsectionsWithHeading.length > 1 && (
           <button type="button" onClick={handleRemoveSubsection}>
             - Remove Subsection
           </button>

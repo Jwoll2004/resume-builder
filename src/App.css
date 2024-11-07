@@ -22,7 +22,10 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #607d9c; /* Darker color on hover for visual feedback */
 }
-
+html{
+  width: 100%;
+  max-width: 100%;
+}
 * {
   margin: 0;
   padding: 0;
@@ -518,4 +521,76 @@ input[type="number"] {
   display: flex;
   gap: 10px;
   align-items: center;
+}
+
+/* Responsive styles for screens up to 768px */
+@media (max-width: 880px) {
+
+  /* Adjust container to a single column */
+  .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 10px;
+  }
+
+  /* Make form container and form elements full-width */
+  .form-container, .form, .resume-wrapper, .resume-container, .cv-preview {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 15px;
+  }
+
+  /* Center buttons and make them full-width */
+  .buttons, .curve-button {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 10px;
+  }
+
+  /* Reduce font sizes for better readability on smaller screens */
+  .cv-title, .general-cv .name, .middle-section h1, .middle-section p, .projectName {
+      font-size: clamp(16px, 2vw, 18px);
+      text-align: center;
+  }
+
+  /* Adjust grid-based elements to stack */
+  .cv-project, .experience-cv .entry {
+      grid-template-columns: 1fr;
+  }
+
+  /* Add padding and reduce font sizes for better readability */
+  .entry, .education-cv, .experience-cv, .project-cv, .tech-info {
+      padding: 10px;
+      font-size: clamp(12px, 2vw, 16px);
+  }
+
+  /* Footer adjustments */
+  .footer {
+      flex-direction: column;
+      gap: 10px;
+      text-align: center;
+      padding: 20px;
+  }
+}
+
+.container, .App, .resume-tips-container, .header, .resume-wrapper {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box; /* Ensure padding doesn’t exceed width */
+}
+
+.form-container, .form, .buttons, .cv-preview, .footer, .resume-container {
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 980px) {
+  html, body, .container, .App {
+      width: 100%;
+      max-width: 100%;
+  }
 }

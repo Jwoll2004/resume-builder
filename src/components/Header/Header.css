@@ -43,3 +43,30 @@
   transform: scale(1.05);
   box-shadow: 0 0px 20px rgba(0, 0, 0, 0.15);
 }
+
+/* Responsive styles for mobile devices */
+@media (max-width: 880px) {
+
+  /* Header adjustments for mobile */
+  .header {
+      padding: clamp(0.5rem, 1vw, 2rem);
+      flex-direction: column;
+  }
+
+  .header-content {
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .header h1 {
+      font-size: clamp(1.25rem, 3vw, 2.5rem);
+      text-align: center;
+  }
+
+  .scroll-link {
+      padding: 0.5rem 1rem;
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
+  }
+}
