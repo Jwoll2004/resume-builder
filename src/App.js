@@ -345,6 +345,7 @@ const App = () => {
   const [printMode, setPrintMode] = useState(false);
   const resumeContainerRef = useRef(null);
 
+
   const handlePrint = useReactToPrint({
     content: () => resumeContainerRef.current,
     documentTitle: `${generalInfo.name}'s Resume`,
@@ -361,7 +362,7 @@ const App = () => {
         // Update font sizes for print mode
         resumeContainerRef.current.style.setProperty(
           "--font-size-name",
-          "24px"
+          "48px"
         );
         resumeContainerRef.current.style.setProperty(
           "--font-size-heading",
@@ -569,30 +570,30 @@ const App = () => {
               className={`resume-container ${printMode ? "print-mode" : ""}`}
               ref={resumeContainerRef}
             >
-              <div className="general-cv">
+              <div className="general-cv cv-section">
                 {generalInfo !== "" && <GeneralInfoCV props={generalInfo} />}
               </div>
 
-              <div className="education-cv">
+              <div className="education-cv cv-section">
                 {educationInfo.length > 0 && (
                   <p className="cv-title">Education</p>
                 )}
                 <EducationInfoCV educationInfo={educationInfo} />
               </div>
 
-              <div className="project-cv">
+              <div className="project-cv cv-section">
                 {projectInfo.length > 0 && <p className="cv-title">Projects</p>}
                 <ProjectInfoCV projectInfo={projectInfo} />
               </div>
 
-              <div className="experience-cv">
+              <div className="experience-cv cv-section">
                 {experienceInfo.length > 0 && (
                   <p className="cv-title">Experience</p>
                 )}
                 <ExperienceInfoCV experienceInfo={experienceInfo} />
               </div>
 
-              <div className="technical-skills-cv">
+              <div className="technical-skills-cv cv-section">
                 {technicalSkills !== "" && (
                   <p className="cv-title">Technical Skills</p>
                 )}
