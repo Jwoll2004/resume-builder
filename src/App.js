@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./components/Header/Header.js";
 import ResumeGuide from "./components/ResumeGuide/ResumeGuide.js";
 import CustomFormButtons from "./components/Forms/AddSection/CustomFormButtons.js";
-import ShowCustomSection from "./components/Forms/AddSection/ShowCustomSection/ShowCustomSection.js";
+import ShowCustomSectionForm from "./components/Forms/AddSection/ShowCustomSectionForm/ShowCustomSectionForm.js";
 import CustomSectionForm from "./components/Forms/AddSection/CustomSectionForm/CustomSectionForm.js";
 import GeneralInfoForm from "./components/Forms/GeneralInfoForm/GeneralInfoForm.js";
 import EducationForm from "./components/Forms/EducationForm/EducationForm.js";
@@ -20,6 +20,7 @@ import ProjectInfoCV from "./components/CvPreview/ProjectCV/ProjectInfoCV.js";
 import TechnicalSkillsForm from "./components/Forms/TechnicalSkillsForm/TechnicalSkillsForm.js";
 import ShowTechnicalSkills from "./components/Forms/TechnicalSkillsForm/ShowTechnicalSkills.js";
 import TechnicalSkillsCV from "./components/CvPreview/TechnicalCV/TechnicalSkillsCV.js";
+import CustomSectionCV from "./components/CvPreview/CustomCV/CustomSectionCV.js";
 import Footer from "./components/Footer/Footer.js";
 import { useReactToPrint } from "react-to-print";
 
@@ -278,7 +279,8 @@ const App = () => {
     if (obj.type === "general") {
       setGeneralInfo(obj);
       setGeneralEdit(false);
-    } else if (obj.type === "education") {
+    } 
+    else if (obj.type === "education") {
       if (educationEdit) {
         const newEducation = educationInfo.map((element, index) => {
           if (index === educationId) {
@@ -289,12 +291,14 @@ const App = () => {
         setEducationInfo(newEducation);
         setEducationEdit(false);
         setEducationId(null);
-      } else {
+      } 
+      else {
         setEducationInfo([...educationInfo, obj]);
         setEducationEdit(false);
         setEducationId(null);
       }
-    } else if (obj.type === "project") {
+    } 
+    else if (obj.type === "project") {
       if (projectEdit) {
         const newProject = projectInfo.map((element, index) => {
           if (index === projectId) {
@@ -305,12 +309,14 @@ const App = () => {
         setProjectInfo(newProject);
         setProjectEdit(false);
         setProjectId(null);
-      } else {
+      } 
+      else {
         setProjectInfo([...projectInfo, obj]);
         setProjectEdit(false);
         setProjectId(null);
       }
-    } else if (obj.type === "experience") {
+    } 
+    else if (obj.type === "experience") {
       if (experienceEdit) {
         const newExperience = experienceInfo.map((element, index) => {
           if (index === experienceId) {
@@ -321,19 +327,20 @@ const App = () => {
         setExperienceInfo(newExperience);
         setExperienceEdit(false);
         setExperienceId(null);
-      } else {
+      } 
+      else {
         setExperienceInfo([...experienceInfo, obj]);
         setExperienceEdit(false);
         setExperienceId(null);
       }
-    } else if (obj.type === "technicalSkills") {
+    } 
+    
+    else if (obj.type === "technicalSkills") {
       setTechnicalSkills(obj);
       setTechnicalSkillsEdit(false);
-    } else if (obj.type.startsWith("customSection")) {
-      console.log("Saving custom section", obj);
-      console.log("intial custom section", customSections);
-      console.log("Custom section index", obj.type.split("-")[1]);
+    } 
 
+    else if (obj.type.startsWith("customSection")) {
       const customSectionsCopy = [...customSections];
       customSectionsCopy[obj.type.split("-")[1]] = obj;
 
@@ -549,7 +556,7 @@ const App = () => {
                     (subsection) => subsection.items.length > 0
                   ) && (
                     <div className="custom-form-show form-show show-info">
-                      <ShowCustomSection section={section} />
+                      <ShowCustomSectionForm section={section} />
 
                       <button
                         onClick={() => editCustomSection(index)}
@@ -599,6 +606,12 @@ const App = () => {
                 )}
                 <TechnicalSkillsCV props={technicalSkills} />
               </div>
+
+              {customSections.map((section, index) => (
+                <div className="custom-section-cv cv-section" key={index}>
+                  <CustomSectionCV section={section} />
+                </div>
+              ))}
             </div>
           </div>
         </div>

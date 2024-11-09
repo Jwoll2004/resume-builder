@@ -443,7 +443,7 @@ input[type="number"] {
   align-items: center;
 }
 
-.project-description {
+.project-description , .cv-section-list{
   padding-left: 1rem;
   grid-column: 1 / span 3;
 }
@@ -557,7 +557,8 @@ input[type="number"] {
   .general-cv .name,
   .middle-section h1,
   .middle-section p,
-  .projectName {
+  .projectName,
+  .cv-subtitle {
     font-size: clamp(16px, 2vw, 18px);
   }
 

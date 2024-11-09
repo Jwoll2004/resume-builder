@@ -44,7 +44,7 @@ const ShowItem = (props) => {
             Live Preview
           </a>
         </div>
-        <ul className="project-description">
+        <ul className="project-description cv-section-list">
           {props.description.map((point) => {
             return (
               <li key={uniqid()} className="description">

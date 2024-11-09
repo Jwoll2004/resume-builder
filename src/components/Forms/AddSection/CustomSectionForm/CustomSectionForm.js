@@ -47,8 +47,8 @@ const CustomSectionForm = (props) => {
 
     setSectionData({
       type: props.sectionData?.type || `customSection-${props.index || 0}`,
-      title: "",
-      subsectionsWithHeading: [{ heading: "", items: [""] }],
+      title: customSection.title || "My Custom Section",
+      subsectionsWithHeading: [ { heading: "", items: [""] } ],
     });
   };
 
