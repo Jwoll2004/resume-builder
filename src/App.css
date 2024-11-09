@@ -63,6 +63,9 @@ a {
   align-items: center;
   gap: 0.2rem;
 }
+.general-cv a {
+  text-decoration: none;
+}
 
 button:disabled {
   background-color: #ccc !important;
@@ -652,32 +655,33 @@ input[type="number"] {
   .technical-skills-cv .entry:last-child {
     margin-bottom: 0;
   }
-
+  .general-cv .info-container {
+    margin-right: 15px;
+  }
+  
   li {
     margin-left: 30px;
   }
   .techStack,
   .position,
-  .endDate {
+  .endDate,
+  .country {
     margin-left: 5px;
   }
-
-  h1,
-  h2,
-  h3 {
-    margin: 0;
-    padding: 0;
+  
+  p, li{
+    font-size: 14px;
   }
-
   .name p {
-    font-size: 36px;
+    font-size: 28px;
   }
 
   .cv-title {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .projectName,
+  .project-links,
   .project-links a,
   .school,
   .company,
