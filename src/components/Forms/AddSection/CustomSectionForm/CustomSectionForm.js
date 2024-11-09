@@ -195,14 +195,14 @@ const CustomSectionForm = (props) => {
           </div>
         ))}
 
-        <button type="button" onClick={handleAddSubsection}>
+        <button type="button" onClick={handleAddSubsection} className="subsection-button">
           + Add Subsection
         </button>
 
         {/* if subsections exist, only then display this button */}
 
         {sectionData.subsectionsWithHeading.length > 1 && (
-          <button type="button" onClick={handleRemoveSubsection}>
+          <button type="button" onClick={handleRemoveSubsection} className="subsection-button">
             - Remove Subsection
           </button>
         )}
