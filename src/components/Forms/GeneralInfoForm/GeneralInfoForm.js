@@ -10,7 +10,6 @@ const GeneralInfoForm = (props) => {
   const [linkedIn, setLinkedIn] = useState("");
 
   const [type, setType] = useState("general");
-
   useEffect(() => {
     if (props.isEditing) {
       setName(props.generalInfo.name);

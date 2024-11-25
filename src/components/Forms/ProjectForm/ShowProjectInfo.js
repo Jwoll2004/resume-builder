@@ -22,33 +22,6 @@ const ShowInfo = (props) => {
 
 const ShowItem = (props) => {
 	return (
-		// return in format:
-
-	// 	<div>
-	//   <strong>Languages: </strong>
-	//   <span>{props.languages}</span>
-
-	//   <strong>Tools and Technologies: </strong>
-	//   <span>{props.toolsAndTechnologies}</span>
-
-	//   <strong>Core Subjects: </strong>
-	//   <span>{props.coreSubjects}</span>
-	// </div>
-
-		// <div>
-		// 	<h4>{props.projectName}</h4>
-		// 	<p>{props.techStack}</p>
-		// 	<p>{props.repoLink}</p>
-		// 	<p>{props.liveLink}</p>
-		// 	<ul>
-		// 		{props.description.map((point) => {
-		// 			return (
-		// 				<li key={uniqid()}>{point}</li>
-		// 			);
-		// 		})}
-		// 	</ul>
-		// </div>
-
 		<div>
 			<p><strong>Project Name: </strong>{props.projectName}</p>
 			<p><strong>Tech Stack: </strong>{props.techStack}</p>
