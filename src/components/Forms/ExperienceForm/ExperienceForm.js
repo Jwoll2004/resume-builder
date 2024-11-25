@@ -3,6 +3,7 @@ import { InputBox } from "../InputBox";
 import { FormButtons } from "../FormButtons";
 import { format } from "date-fns";
 
+// mapping of month to date formats
 const ExperienceForm = (props) => {
   const [company, setCompany] = useState("");
   const [position, setPosition] = useState("");
@@ -16,9 +17,18 @@ const ExperienceForm = (props) => {
       setCompany(props.experienceInfo.company);
       setPosition(props.experienceInfo.position);
       setStartDate(
-        format(new Date(props.experienceInfo.startDate), "yyyy-MM-dd")
+        // date is from month Year format that is, input element was type month... so only format and set month and year not date as that will give error
+        format(new Date(props.experienceInfo.startDate), "yyyy-MM")
       );
-      setEndDate(format(new Date(props.experienceInfo.endDate), "yyyy-MM-dd"));
+      if(props.experienceInfo.endDate === "Present") {
+        setEndDate(format(new Date(), "yyyy-MM"));
+      } 
+      else {
+        // dates have been stored as Oct, 2019 (i.e. string...) so firstly extract both month and year and then from that month's first 3 letters, get the month so we can format is as actual date
+        const endMonth = props.experienceInfo.endDate.split(",")[0];
+        const endYear = props.experienceInfo.endDate.split(",")[1];
+        setEndDate(format(new Date(`${endMonth} 1, ${endYear}`), "yyyy-MM"));
+      }
       setResponsibilities(props.experienceInfo.responsibilities);
     }
   }, [props.isEditing, props.experienceInfo]);
@@ -40,8 +50,8 @@ const ExperienceForm = (props) => {
       position: position,
       company: company,
       startDate: format(
-        new Date(startDate.replaceAll("-", "/")),
-        "MMM',' yyyy"
+        new Date(startDate.replaceAll("-", "/")), "MMM',' yyyy"
+      
       ),
       endDate: format(new Date(endDate.replaceAll("-", "/")), "MMM',' yyyy"),
       responsibilities: responsibilities,
@@ -85,9 +95,9 @@ const ExperienceForm = (props) => {
         />
 
         <InputBox
-          labelFor="start-date"
+          labelFor="experience"
           label="Start Date"
-          type="date"
+          type="month"
           id="start-date"
           name="start-date"
           value={startDate}
@@ -95,9 +105,9 @@ const ExperienceForm = (props) => {
         />
 
         <InputBox
-          labelFor="end-date"
+          labelFor="experience"
           label="End Date"
-          type="date"
+          type="month"
           id="end-date"
           name="end-date"
           value={endDate}

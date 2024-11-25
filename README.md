@@ -4,9 +4,10 @@ Resume Builder is a web application that allows users to create a professional r
 
 The application is built using React, HTML, CSS, and JavaScript. The users can download the resume in PDF format once they are done.
 
-Chec it out!  [Live Preview](https://resume-builder-jwacker.vercel.app/)
+Check it out!  [Live Preview](https://resume-builder-jwacker.vercel.app/)
  
-![demo screenshot](src/images/resume-builder-ss.png)
+![demo screenshot](src/images/ss1.png)
+![demo screenshot](src/images/ss2.png)
 
 # Here are some React project setup details:
 

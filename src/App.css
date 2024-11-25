@@ -190,7 +190,7 @@ form {
   align-items: center;
 }
 
-.subsection-button { 
+.subsection-button {
   width: 60%;
   align-self: center;
 }
@@ -199,7 +199,6 @@ form {
   justify-content: space-between;
   align-items: center;
 }
-
 
 .grade-input {
   display: flex;
@@ -277,7 +276,6 @@ input[type="number"] {
   justify-content: center; /* Center the resume on the screen */
   box-sizing: border-box;
 }
-
 
 .middle-section {
   background-color: rgba(171, 237, 255, 0.582);
@@ -470,7 +468,8 @@ input[type="number"] {
   align-items: center;
 }
 
-.project-description , .cv-section-list{
+.project-description,
+.cv-section-list {
   padding-left: 1rem;
   grid-column: 1 / span 3;
 }
@@ -604,15 +603,16 @@ input[type="number"] {
     width: 10px;
     height: 10px;
   }
-  
+
   /* Add padding and reduce font sizes for better readability */
-  .entry, .cv-info{
+  .entry,
+  .cv-info {
     font-size: 8px;
   }
   .cv-title {
     font-size: 10px;
   }
-  .projectName { 
+  .projectName {
     font-size: 9px;
   }
 
@@ -658,7 +658,7 @@ input[type="number"] {
   .general-cv .info-container {
     margin-right: 15px;
   }
-  
+
   li {
     margin-left: 30px;
   }
@@ -668,8 +668,9 @@ input[type="number"] {
   .country {
     margin-left: 5px;
   }
-  
-  p, li{
+
+  p,
+  li {
     font-size: 14px;
   }
   .name p {

@@ -123,9 +123,9 @@ const EducationForm = (props) => {
         />
 
         <InputBox
-          labelFor="startDate"
+          labelFor="education"
           label="Start Date"
-          type="date"
+          type="month"
           id="startDate"
           name="startDate"
           value={startDate}
@@ -133,9 +133,9 @@ const EducationForm = (props) => {
         />
 
         <InputBox
-          labelFor="endDate"
+          labelFor="education"
           label="End Date"
-          type="date"
+          type="month"
           id="endDate"
           name="endDate"
           value={endDate}
