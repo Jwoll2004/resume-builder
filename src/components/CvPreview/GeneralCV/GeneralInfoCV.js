@@ -10,7 +10,6 @@ const GeneralInfoCV = ({ props }) => {
       {Object.entries(props).map(([key, value]) => {
         if (value !== props.type) {
           return (
-            // className of the format "email info-container"
             <p key={key} className={`${key} info-container`}>
               {key === "email" && (
                 <a href={`mailto:${value}`} className="info-container email">

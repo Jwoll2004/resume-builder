@@ -38,8 +38,8 @@ const App = () => {
     {
       school: "University of Example",
       degree: "Bachelor of Science",
-      startDate: "Sep 2015",
-      endDate: "May 2019",
+      startDate: "Sep, 2015",
+      endDate: "May, 2019",
       type: "education",
       grade: ["3.8", "CGPA"],
       city: "Example City",
@@ -49,10 +49,10 @@ const App = () => {
     {
       school: "Example School",
       degree: "High School Diploma",
-      startDate: "Sep 2011",
-      endDate: "May 2015",
+      startDate: "Sep, 2011",
+      endDate: "May, 2015",
       type: "education",
-      grade: ["4.0", "GPA"],
+      grade: ["4.0", "CGPA"],
       city: "Example City",
       country: "Example Country",
     },
@@ -60,10 +60,10 @@ const App = () => {
     {
       school: "Example Institute",
       degree: "Certification",
-      startDate: "Sep 2020",
-      endDate: "Dec 2020",
+      startDate: "Sep, 2020",
+      endDate: "Dec, 2020",
       type: "education",
-      grade: ["A+", "Grade"],
+      grade: ["95", "Percentage"],
       city: "Example City",
       country: "Example Country",
     },
@@ -167,7 +167,7 @@ const App = () => {
   });
 
   const handleAddSectionClick = () => {
-    console.log(customSections.length);
+    // console.log(customSections.length);
     setCustomSections([
       ...customSections,
       {

@@ -58,7 +58,7 @@ const ShowItem = (props) => {
             if (key === "grade") {
               return (
                 <p key={key} className={key}>
-                  {value[1]} - {value[0]}
+                  {value[1]} - {value[0] + (value[1] === "Percentage" ? "%" : "")}
                 </p>
               );
             }
