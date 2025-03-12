@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { InputBox } from "../InputBox";
 import { FormButtons } from "../FormButtons";
-import { format } from "date-fns";
+import { parse, format } from "date-fns";
 
 const EducationForm = (props) => {
   const [school, setSchool] = useState("");
@@ -18,8 +18,18 @@ const EducationForm = (props) => {
     if (props.isEditing) {
       setSchool(props.educationInfo.school);
       setDegree(props.educationInfo.degree);
-      setStartDate(format(new Date(props.educationInfo.startDate), 'yyyy-MM-dd'));
-      setEndDate(format(new Date(props.educationInfo.endDate), 'yyyy-MM-dd'));
+      setStartDate(
+        format(
+          parse(props.educationInfo.startDate, "MMM, yyyy", new Date()),
+          "yyyy-MM"
+        )
+      );
+      setEndDate(
+        format(
+          parse(props.educationInfo.endDate, "MMM, yyyy", new Date()),
+          "yyyy-MM"
+        )
+      );
       setGrade([props.educationInfo.grade[0], props.educationInfo.grade[1]]);
       setCity(props.educationInfo.city);
       setCountry(props.educationInfo.country);
@@ -38,17 +48,14 @@ const EducationForm = (props) => {
   };
 
   const OnSubmit = (e) => {
-    console.log("submit");
+    // console.log("submit");
     e.preventDefault();
 
     const educationInfo = {
       school: school,
       degree: degree,
-      startDate: format(
-        new Date(startDate.replaceAll("-", "/")),
-        "MMM',' yyyy"
-      ),
-      endDate: format(new Date(endDate.replaceAll("-", "/")), "MMM',' yyyy"),
+      startDate: format(new Date(startDate), "MMM, yyyy"),
+      endDate: format(new Date(endDate), "MMM, yyyy"),
       type: type,
       grade: grade,
       city: city,
