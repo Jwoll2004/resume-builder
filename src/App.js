@@ -102,8 +102,8 @@ const App = () => {
     {
       company: "Example Corp",
       position: "Software Engineer",
-      startDate: "Jan 2020",
-      endDate: "Present",
+      startDate: "Jan, 2020",
+      endDate: "Mar, 2025",
       responsibilities: "Developed and maintained applications.",
       type: "experience",
     },
@@ -111,8 +111,8 @@ const App = () => {
     {
       company: "Example Inc",
       position: "Intern",
-      startDate: "May 2019",
-      endDate: "Aug 2019",
+      startDate: "May, 2019",
+      endDate: "Aug, 2019",
       responsibilities: "Assisted with development tasks.",
       type: "experience",
     },
@@ -120,8 +120,8 @@ const App = () => {
     {
       company: "Example LLC",
       position: "Volunteer",
-      startDate: "Sep 2019",
-      endDate: "Dec 2019",
+      startDate: "Sep, 2019",
+      endDate: "Dec, 2019",
       responsibilities: "Helped with organizing events.",
       type: "experience",
     },

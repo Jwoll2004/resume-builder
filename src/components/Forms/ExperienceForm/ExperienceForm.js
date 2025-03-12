@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { InputBox } from "../InputBox";
 import { FormButtons } from "../FormButtons";
-import { format } from "date-fns";
+import { parse, format } from "date-fns";
 
 // mapping of month to date formats
 const ExperienceForm = (props) => {
@@ -17,17 +17,21 @@ const ExperienceForm = (props) => {
       setCompany(props.experienceInfo.company);
       setPosition(props.experienceInfo.position);
       setStartDate(
-        // date is from month Year format that is, input element was type month... so only format and set month and year not date as that will give error
-        format(new Date(props.experienceInfo.startDate), "yyyy-MM")
+        format(
+          parse(props.experienceInfo.startDate, "MMM, yyyy", new Date()),
+          "yyyy-MM"
+        )
       );
       if(props.experienceInfo.endDate === "Present") {
         setEndDate(format(new Date(), "yyyy-MM"));
       } 
       else {
-        // dates have been stored as Oct, 2019 (i.e. string...) so firstly extract both month and year and then from that month's first 3 letters, get the month so we can format is as actual date
-        const endMonth = props.experienceInfo.endDate.split(",")[0];
-        const endYear = props.experienceInfo.endDate.split(",")[1];
-        setEndDate(format(new Date(`${endMonth} 1, ${endYear}`), "yyyy-MM"));
+        setEndDate(
+          format(
+            parse(props.experienceInfo.endDate, "MMM, yyyy", new Date()),
+            "yyyy-MM"
+          )
+        );
       }
       setResponsibilities(props.experienceInfo.responsibilities);
     }
@@ -49,11 +53,8 @@ const ExperienceForm = (props) => {
     const experienceInfo = {
       position: position,
       company: company,
-      startDate: format(
-        new Date(startDate.replaceAll("-", "/")), "MMM',' yyyy"
-      
-      ),
-      endDate: format(new Date(endDate.replaceAll("-", "/")), "MMM',' yyyy"),
+      startDate: format(new Date(startDate), "MMM, yyyy"),
+      endDate: format(new Date(endDate), "MMM, yyyy"),
       responsibilities: responsibilities,
       type: type,
     };
